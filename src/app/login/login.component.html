@@ -1,0 +1,72 @@
+<mat-toolbar class="mat-elevation-z2" *ngIf="!deviceXs" fxLayoutGap="50px">
+    <mat-toolbar-row fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
+    
+      <div class="left-end" fxLayoutGap="50px">
+    <button mat-icon-button>
+        <span><img src="../../assets/CTLogo/ToobarLogo.png" style="height:55px"></span>
+        <span class="logo">CT General Hospital</span></button>
+  </div>
+   
+   
+  <div class="right-end" fxLayoutGap="80px" style="margin-right:50px">
+    
+    <button mat-raised-button (click)="register()">
+        <mat-icon style="color:rgba(3, 161, 170,1)">how_to_register</mat-icon>SignUp
+    </button>
+    <button mat-raised-button><mat-icon style="color:rgba(3, 161, 170,1)">contacts</mat-icon>About Us</button>
+  </div>
+  </mat-toolbar-row>
+  </mat-toolbar>
+
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
+    <div class="rightCard">
+        <mat-card class="card" fxLayout="column" fxLayoutAlign="center center">
+
+            <mat-card-header><mat-card-title>
+                <button mat-icon-button style="margin-right:50px">
+                <span><img src="../../assets/CTLogo/logowithwhitebg.png" style="height:50px"></span>
+                
+                <span class="cardTitle" style="font-size:18px">Login</span></button></mat-card-title>
+            
+            </mat-card-header>
+            <p class="email">
+                <mat-form-field [formGroup]= "loginForm" appearance="outline">
+                    <mat-label><b>UserId/Email</b></mat-label>
+                    <input matInput type="email" matInput formControlName="email" placeholder="abc@xyz.com" required>
+                    <mat-icon matSuffix>email</mat-icon>               
+                </mat-form-field>
+                <mat-error *ngIf= "loginForm.controls['email'].dirty && loginForm.hasError('required','email')">
+                    Email is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf= "loginForm.controls['email'].dirty && loginForm.hasError('email','email')">
+                    Invalid Email
+                </mat-error>
+                <span   style="width:300px"></span>
+            </p>
+            <p class="password">
+                <mat-form-field [formGroup]= "loginForm" class="pwdBox" appearance="outline">
+                    <mat-label><b>Password</b></mat-label>
+                    <input matInput type="password" matInput formControlName="password" placeholder="password" required>
+                    <mat-icon matSuffix>vpn_key</mat-icon>
+                </mat-form-field>
+                <mat-error *ngIf= "loginForm.controls['password'].dirty && loginForm.hasError('required','password')">
+                    Password is <strong>required</strong>
+                </mat-error>
+                <a class="resetPwd" routerLink="/forgot-password" style="text-decoration: none;margin-left: 185px;"><b>Forgot Password?</b></a>
+            </p>
+
+
+
+
+            <div>
+                <p style="margin-top:50px" fxLayoutGap="15px" fxLayout.xs="column">
+                    <button mat-raised-button class="loginButton" style="background-color:rgba(3, 161, 170,1);color:white" (click)= "login()">Login</button>
+                    <button mat-raised-button style="background-color:rgba(3, 161, 170,1);color:white" (click)="register()">Register</button>
+                </p>
+            </div>
+
+
+
+        </mat-card>
+    </div>
+</div>

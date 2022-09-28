@@ -1,0 +1,28 @@
+
+.mat-toolbar{
+  height:5vh;
+  width:auto;
+  background-color: #a4f7e6;
+  position: relative;
+  z-index:2;
+}
+.mat-sidenav{
+  width:15%;
+  background-color: #fefefe;
+  z-index:2;
+  
+}
+.right-end{
+  margin-right:50px;
+}
+.logo{
+  font-size: 24px;
+}
+.leftLogo{
+  margin-bottom: 14px;
+}
+.mat-list-item:hover{
+  background-color: #e6fff4;
+
+}
+  

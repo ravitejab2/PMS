@@ -18,6 +18,8 @@ export class UserService {
 
   logout(){
     localStorage.removeItem('userToken');
+    localStorage.removeItem('userID');
+    localStorage.removeItem('userName');
   
   }
 

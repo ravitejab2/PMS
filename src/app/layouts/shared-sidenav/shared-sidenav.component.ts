@@ -11,15 +11,27 @@ import { UserService } from 'src/app/user.service';
   styleUrls: ['./shared-sidenav.component.css']
 })
 export class SharedSidenavComponent implements OnInit {
-  
+ 
+   ActiveUsers!:string;
   isActive:boolean=true;
 // @Input() deviceXs!:boolean;
 mediaSub!: Subscription;
 devicesXs!: boolean;
-constructor(public mediaObserver: MediaObserver,private router:Router,private service:UserService) {
 
+
+constructor(public mediaObserver: MediaObserver,private router:Router,private service:UserService) {
+    const value = localStorage.getItem("userName");
+    if (typeof value === 'string') {
+      this.ActiveUsers = JSON.parse(value) // ok
+  }
+    
+    console.log(value);
 }
+
+
+
 ngOnInit() {
+     
   this.mediaSub = this.mediaObserver.asObservable() // New Way asObservable()
   .pipe(
     filter((changes: MediaChange[]) => changes.length > 0),
@@ -36,7 +48,7 @@ ngOnDestroy() {
 }
 logout(){
   console.log('hit');
-this.service.logout();
+ this.service.logout();
  this.router.navigate(['login']);
 
 }

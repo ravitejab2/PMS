@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ResponseModel } from '../models/responseModel';
 import { ResponsiveService } from '../responsive/responsive.service';
 import { UserService } from '../user.service';
@@ -12,7 +13,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private router: Router, private formBuilder: FormBuilder, private service: UserService, private responsive: ResponsiveService) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private service: UserService, private responsive: ResponsiveService,private toaster:ToastrService) { }
   "loginForm": FormGroup;
   isLoginError: boolean = false;
   deviceXs!: boolean;
@@ -32,8 +33,10 @@ export class LoginComponent implements OnInit {
       this.service.login(this.loginForm.value).subscribe((data: ResponseModel) => {
         if (data.responseCode == 1) {
           localStorage.setItem('userToken', JSON.stringify(data.dateSet.token));
-
+          
+          localStorage.setItem('userName', JSON.stringify(data.dateSet.firstName));
           localStorage.setItem('userID', JSON.stringify(data.dateSet.id));
+          this.toaster.success("User Login Successfull")
           
           if (!data.dateSet.isPasswordChanged) {
             this.router.navigate(['/change-password']);

@@ -19,7 +19,6 @@ const routes: Routes = [
   {path:'change-password',component:ChangePasswordComponent,canActivate: [AuthGuardService]},
   {path:'routing',component:SharedFooterComponent},
 
-
 ];
 
 @NgModule({

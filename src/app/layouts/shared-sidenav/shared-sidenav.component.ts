@@ -25,7 +25,7 @@ devicesXs!: boolean;
 constructor(public mediaObserver: MediaObserver,public router:Router,private service:UserService,private toaster:ToastrService) {
     const value = localStorage.getItem("userName");
     if (typeof value === 'string') {
-      this.ActiveUsers = JSON.parse(value) // ok
+      this.ActiveUsers = value; // ok
     }
     console.log(value);
     const user = localStorage.getItem("userRole");

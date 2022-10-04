@@ -41,6 +41,8 @@ export class LoginComponent implements OnInit {
        localStorage.setItem('userToken',this.response.dataSet.token)
        localStorage.setItem('userID',this.response.dataSet.id); 
        localStorage.setItem('userRole', JSON.stringify(this.response.dataSet.roles[0]));
+       localStorage.setItem('userName',this.response.dataSet.firstName +' '+this.response.dataSet.lastName);
+
        this.toaster.success("User Login Successfull");
         if(!this.response.dataSet.isPasswordChanged){
           //console.log(!data.dateSet.isPasswordChanged)

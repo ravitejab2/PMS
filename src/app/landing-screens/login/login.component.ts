@@ -17,7 +17,8 @@ export class LoginComponent implements OnInit {
   "loginForm": FormGroup;
   isLoginError: boolean = false;
   deviceXs!: boolean;
-
+  response!: any;
+  
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: new FormControl(null, [Validators.required, Validators.email]),
@@ -30,44 +31,48 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.loginForm.valid) {
-      this.service.login(this.loginForm.value).subscribe((data: ResponseModel) => {
-        if (data.responseCode == 1) {
-          localStorage.setItem('userToken', JSON.stringify(data.dateSet.token));
-          
-          localStorage.setItem('userName', JSON.stringify(data.dateSet.firstName));
-          localStorage.setItem('userID', JSON.stringify(data.dateSet.id));
-          localStorage.setItem('userRole', JSON.stringify(data.dateSet.roles));
-          
-          this.toaster.success("User Login Successfull");
-          
-          if (!data.dateSet.isPasswordChanged) {
-            this.router.navigate(['/change-password']);
-          }
-          
-          else {
-            console.log(data.dateSet.roles);
-            if (data.dateSet.roles[0] == "user")
-            this.router.navigate(['/dashboard']);
-            if (data.dateSet.roles[0] == "nurse")
-              this.router.navigate(['/dashboard']);
-            if (data.dateSet.roles[0] == "physician")
-              this.router.navigate(['/dashboard']);
-            if (data.dateSet.roles[0] == "admin")
-             this.router.navigate(['/dashboard']);
-          }
+    
+    this.service.login(this.loginForm.value).subscribe((data : ResponseModel)=>{
+      
+      if (data.responseCode == 1) {
+       this.response=data; 
+       console.log(data);   
+       console.log(this.response.dataSet.token) 
+       localStorage.setItem('userToken',this.response.dataSet.token)
+       localStorage.setItem('userID',this.response.dataSet.id); 
+       localStorage.setItem('userRole', JSON.stringify(this.response.dataSet.roles[0]));
+       this.toaster.success("User Login Successfull");
+        if(!this.response.dataSet.isPasswordChanged){
+          //console.log(!data.dateSet.isPasswordChanged)
+          this.router.navigate(['/change-password']);
         }
-        else {
-          console.log(data.responseMessage);
-          this.toaster.error(data.responseMessage)
+      else
+      {          
+        console.log(this.response.dataSet.roles);  
+        if(this.response.dataSet.roles[0]=="user")
+        this.router.navigate(['/dashboard']);
+        if(this.response.dataSet.roles[0]=="nurse")
+        this.router.navigate(['/dashboard']);
+        if(this.response.dataSet.roles[0]=="physician")
+        this.router.navigate(['/dashboard']);
+        if(this.response.dataSet.roles[0]=="admin")
+        this.router.navigate(['/dashboard']);
         }
-      },
-       (err => {
-          console.log(err);
-        }));
-    }
-    else {
-      this.validateAllFromFields(this.loginForm);
-    }
+      
+      }
+      else{
+        console.log(data.responseMessage);
+        this.toaster.error(data.responseMessage)
+      }
+    },
+    (err =>{
+      console.log(err);
+    }));
+  }
+  else{
+    console.log(this.loginForm.value);
+    this.validateAllFromFields(this.loginForm);
+  }
   }
 
   // logout(){

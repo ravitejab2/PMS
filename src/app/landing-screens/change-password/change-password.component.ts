@@ -46,24 +46,18 @@ export class ChangePasswordComponent implements OnInit {
   }
   changePassword(){
     if(this.newPassword.valid){
-      const control = this.newPassword.get('Role');
-
-      if(control instanceof FormControl){
-
-        control.setValue('user');
-
-      }
+      
       //this.newPassword.controls['Role'].value='user';
       console.log(this.role);
       console.log(this.newPassword.value);
-      this.userService.changePassword(this.userId,this.newPassword.value)
+      this.userService.changePassword(this.userId,this.newPassword.controls['CurrentPassword'].value,this.newPassword.controls['NewPassword'].value)
       .subscribe((data: ResponseModel) => {
         if (data.responseCode == 1) {
          // this.toasts.success('User registration successful');
          this.toaster.success("Password Changed Successfully")
          console.log('Register Succeeded')
          this.newPassword.reset();
-         this.router.navigateByUrl("/login")
+         this.router.navigate(['/login']);
         }
       });
      

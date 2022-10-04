@@ -46,14 +46,18 @@ export class UserService {
   //   return url;
   // }
 
-  changePassword(userId:number,body:any):Observable<any>{
-    // const value = localStorage.getItem("userToken");
-    // console.log(value);
-  //   const header = new Headers({ 'Authorization': `Bearer ${value}` });
-  //   console.log(header);
-  //   const options = {
-  //     headers: header,
-  //  };
-    return this.http.post<ResponseModel>(this.BaseURI+'/change-password/'+userId ,body)
+  changePassword(id:number,old:string,pwd:string):Observable<any>{
+    let token=localStorage.getItem("userToken");
+       
+    let body={
+      CurrentPassword:old,
+      NewPassword:pwd
+    };
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer '+token
+    })
+    
+    
+    return this.http.post<ResponseModel>(this.BaseURI+'/change-password/'+id ,body,{headers:headers})
   }
 }

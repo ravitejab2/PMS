@@ -85,6 +85,40 @@
           <mat-icon mat-list-icon style="font-size:20px;margin-left:6px">all_inbox</mat-icon>
           <span class="menu-item">Inbox</span>
         </mat-list-item>
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <!-- Cabeceras del submenu -->
+                <div fxLayout="row" fxLayoutAlign="space-between center" >
+                  <mat-icon mat-list-icon style="font-size:20px">all_inbox</mat-icon>
+                  Notes
+                </div>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+              <mat-list-item [routerLink]="'/dashboard/sendnotes'" >
+                <!-- Entradas de cada submenú  -->
+                <div fxLayout="row" fxLayoutAlign="space-between center" >
+                 <mat-icon mat-list-icon style="font-size:20px">all_inbox</mat-icon>
+                  Send Note
+                </div>
+              </mat-list-item>
+              <mat-list-item [routerLink]="'/dashboard/viewnotes'" >
+                <!-- Entradas de cada submenú  -->
+                <div fxLayout="row" fxLayoutAlign="space-between center" >
+               <mat-icon mat-list-icon style="font-size:20px">all_inbox</mat-icon>
+                  View Sent Notes
+                </div>
+              </mat-list-item>
+              <mat-list-item [routerLink]="'/dashboard/receivednotes'" >
+                <!-- Entradas de cada submenú  -->
+                <div fxLayout="row" fxLayoutAlign="space-between center" >
+                  <mat-icon mat-list-icon style="font-size:20px">all_inbox</mat-icon>
+                  Received Notes 
+                </div>
+              </mat-list-item>
+          </mat-expansion-panel>
+        </mat-accordion>
   
         <mat-list-item >
           <mat-icon mat-list-icon style="font-size:20px;margin-left:6px">edit_calendar</mat-icon>

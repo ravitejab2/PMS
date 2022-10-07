@@ -57,4 +57,14 @@ export class UserService {
     
     return this.http.post<ResponseModel>(this.BaseURI+'/change-password/'+id ,body,{headers:headers})
   }
+  gethospitalUsers():Observable<any>{
+    let token=localStorage.getItem("userToken");      
+    
+     
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer '+token
+    })
+    
+    return this.http.get<ResponseModel>(this.BaseURI + '/GetEmployees',{headers:headers});
+  }
 }

@@ -1,0 +1,54 @@
+
+
+<mat-card [formGroup]= "sendNoteForm" class="card" fxLayout="column" fxLayoutAlign="center center">
+   
+    <mat-card-header>
+            
+        <div class="heading">
+        
+          <img src="../../assets/CTLogo/logowithwhitebg.png" style="height:40px">
+          
+          <span class="cardTitle" style="font-size:18px" ><b>Reply</b></span>
+        </div>
+      
+      </mat-card-header>
+   
+      <div fxLayout="row" fxLayoutGap="50px" fxLayout.xs="column">
+        <p class="name">
+            <mat-form-field appearance="outline">
+                <mat-label><b>Receiver Name</b></mat-label>
+                <input matInput type="text" value="{{receiverName}}" readonly required>                 
+            </mat-form-field>          
+            
+        </p>
+      </div>
+     
+
+      <div fxLayout="row" fxLayoutGap="50px" fxLayout.xs="column">
+        <p class="name">
+            <mat-form-field appearance="outline">
+                <mat-label><b>Receiver Designation</b></mat-label>
+                <input matInput type="text" value="{{receiverDesignation}}" readonly required>                 
+            </mat-form-field>          
+            
+        </p>
+      </div>
+      <div fxLayout="row" fxLayoutGap="50px" fxLayout.xs="column">
+        <p class="name">
+            <mat-form-field appearance="outline">
+                <mat-label><b>Message</b></mat-label>
+                <input matInput type="textarea" formControlName="Message"  required>                 
+            </mat-form-field>          
+            
+        </p>
+      </div>
+
+     
+        <div>
+            <p  fxLayoutGap="15px" fxLayout.xs="column">
+                <button mat-raised-button class="loginButton" style="background-color:rgba(3, 161, 170,1);color:white" (click)= "sendNote()">Send Note</button>
+                <button mat-raised-button style="background-color:rgba(3, 161, 170,1);color:white" type="reset">Cancel</button>
+            </p>
+        </div>
+</mat-card>
+

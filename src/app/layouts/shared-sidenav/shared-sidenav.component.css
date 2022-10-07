@@ -1,0 +1,77 @@
+.mat-toolbar {
+  height: 5vh;
+  width: auto;
+  background-color: #4f8bc0;
+  z-index: 2;
+  position: relative;
+ 
+}
+
+.mat-sidenav {
+  background-color: #fefefe;
+  justify-content: center;
+  display:flex;
+  width:17%;
+  -ms-overflow-style: none;
+  padding:0px;
+  overflow-x:visible;
+  position:absolute; top:0; bottom:0; left:0; right: 0;
+  
+}
+
+
+.mat-list-item {
+ 
+  font-size: 15px;
+  height:10px
+}
+.mat-list-item >.mat-icon{
+  font-size: 14px;
+}
+.mat-icon{
+  color:grey;
+
+}
+.material-icon
+{
+font-size: 12;
+}
+
+.right-end {
+  margin-right: 50px;
+}
+
+.title {
+  font-size: 24px;
+  align-self:auto;
+  margin-left:-45px
+
+}
+
+.logo {
+  margin-top: 7px;
+}
+
+.mat-list-item:hover,.mat-accordion,.mat-panel-title {
+  background-color: lightblue;
+
+}
+
+
+.nav-link[data-toggle].collapsed:after {
+
+  content: "▾";
+
+}
+
+.nav-link[data-toggle]:not(.collapsed):after {
+
+  content: "▴";
+
+}
+
+.mat-nav-list.mat-list-item.mat-icon{
+  margin-left: 25px;
+}
+
+

@@ -1,0 +1,141 @@
+<div class="container">
+    <div >
+        <mat-card fxLayout="row" fxLayoutGap="5%">
+            <span style="color:blue"><b>My Profile</b></span>
+            
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <img style="height:100px;width:70px" mat-card-avatar
+                    src="https://cdn3.iconfinder.com/data/icons/corona-pandemic-disease/512/003-patient-1024.png"
+                    alt="Shiba Inu">
+                <mat-card-header> 
+                    <mat-card-title> Basic</mat-card-title>
+
+                    <mat-card-subtitle>Patient</mat-card-subtitle>
+                    
+                </mat-card-header>
+                
+
+            </div>
+        
+            <mat-divider [vertical]="true"></mat-divider>
+        
+            <mat-card-content >
+                <button mat-raised-button color="primary">Edit</button>
+               
+                <form fxLayout="column" fxLayoutGap="20px grid">                   
+                    <div fxLayout="row" fxLayoutAlign="" fxLayoutGap="30%">
+                        <div><b>Email</b></div>
+                        <input type="text" disabled placeholder="Email">
+                    </div>
+
+                    <div fxLayout="row" fxLayoutGap="24%">
+                        <div><b>Contact</b></div>
+                        <input type="text" disabled placeholder="Email">
+                    </div>
+
+                    <div fxLayout="row" fxLayoutGap="25.5%">
+                        <div><b>Gender</b></div>
+                        <input type="text" disabled placeholder="Email">
+                    </div>
+
+                    <div fxLayout="row" fxLayoutGap="34.5%">
+                        <div><b>Age</b></div>
+                        <input type="text" disabled placeholder="Email">
+                    </div>
+
+                    <div fxLayout="row" fxLayoutGap="22%">
+                        <div><b>Address</b></div>
+                        <input type="text" disabled placeholder="Email">
+                    </div>               
+            </form>
+               
+            </mat-card-content>
+
+        </mat-card>
+    </div>
+    <br>
+    <div>
+        <mat-accordion fxLayoutGap="">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title style="color:blue">
+                        <b>Emergency Details</b>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Check Your Emegency Details
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <form fxLayout="column" fxLayoutGap="20px grid">
+                
+                    <div fxLayout="row" fxLayoutAlign="" fxLayoutGap="30%">
+                        <div><b>First Name</b></div>
+                        <input type="text" disabled placeholder="Jhon">
+                    </div>
+
+                    <div fxLayout="row" fxLayoutGap="30%">
+                        <div><b>Last Name</b></div>
+                        <input type="text" disabled placeholder="Wick">
+                    </div>
+
+                    <div fxLayout="row" fxLayoutGap="31.5%">
+                        <div><b>Relation</b></div>
+                        <input type="text" disabled placeholder="Father">
+                    </div>
+
+                    <div fxLayout="row" fxLayoutGap="33.1%">
+                        <div><b>Email</b></div>
+                        <input type="text" disabled placeholder="Jhon@wick.com">
+                    </div>
+
+                    <div fxLayout="row" fxLayoutGap="31.65%">
+                        <div><b>Contact</b></div>
+                        <input type="text" disabled placeholder="7999639307">
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="31.4%">
+                        <div><b>Address</b></div>
+                        <input type="text" disabled placeholder="Mumbai">
+                    </div>
+
+               
+            </form>
+            </mat-expansion-panel>
+        </mat-accordion>
+<br>
+        <mat-accordion>
+            <mat-expansion-panel (opened)="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title style="color:blue">
+                        <b>Allergy Details</b>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                       Check Your Allergy Details
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+               
+                <form fxLayout="column" fxLayoutGap="20px grid">
+                    <div fxLayout="row" fxLayoutAlign="" fxLayoutGap="30%">
+                        <div><b>Allergy Id</b></div>
+                        <input type="text" disabled placeholder="Jhon">
+                    </div>
+
+                    <div fxLayout="row" fxLayoutGap="28.25%">
+                        <div><b>Allergy Type</b></div>
+                        <input type="text" disabled placeholder="Wick">
+                    </div>
+
+                    <div fxLayout="row" fxLayoutGap="27.4%">
+                        <div><b>Allergy Name</b></div>
+                        <input type="text" disabled placeholder="Father">
+                    </div>
+
+                    <div fxLayout="row" fxLayoutGap="28.6%">
+                        <div><b>Description</b></div>
+                        <input type="text" disabled placeholder="Jhon@wick.com">
+                    </div>
+
+                   </form>
+                    </mat-expansion-panel>
+           
+        </mat-accordion>
+    </div>
+</div>

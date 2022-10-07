@@ -1,0 +1,18 @@
+.mat-card-header{
+    display:flex;
+    
+}
+.container{
+    margin-top:5%
+}
+.mat-card{
+    box-shadow: 2px 2px 2px 2px lightblue;
+    z-index: 2;
+    position:relative
+}
+.mat-expansion-panel{
+    box-shadow: 2px 2px 2px 2px lightblue;
+}
+.mat-raised-button{
+    margin-left:150%
+}

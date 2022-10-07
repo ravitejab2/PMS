@@ -1,0 +1,313 @@
+<!-- <p>patient-visit works!</p> -->
+
+<mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="vitaldetails">
+        <mat-card [formGroup]= "vitaldetails" class="card" fxLayout="column" fxLayoutAlign="center center">
+          <ng-template matStepLabel>Vital Signs</ng-template>
+  
+          <mat-card-header>
+            
+            <div class="heading">
+            
+              <img src="../../../../assets/CTLogo/CardLogo.png" style="height:40px">
+              
+              <span class="cardTitle" style="font-size:18px" ><b>Vital Signs</b></span>
+            </div>
+          
+          </mat-card-header>
+          <br>
+          
+        <div fxLayout="row" fxLayoutGap="50px" fxLayout.xs="column">
+          <p class="height">
+              <mat-form-field appearance="outline">
+                  <mat-label><b>Height</b></mat-label>
+                  <input matInput type="text" formControlName="Height" matInput placeholder="In cms" required>                 
+              </mat-form-field>
+              <mat-error *ngIf= "vitaldetails.controls['Height'].dirty && vitaldetails.hasError('required','Height')">
+                Please enter your height
+              </mat-error>
+                 
+          </p>
+
+          
+  
+  
+          <p class="weight">
+              <mat-form-field  appearance="outline">
+                  <mat-label><b>Weight</b></mat-label>
+                  <input matInput type="text" formControlName="Weight" matInput placeholder="In kgs" required>               
+              </mat-form-field>
+              <mat-error *ngIf="vitaldetails.controls['Weight'].dirty && vitaldetails.hasError('required','Weight')">
+                Please enter your weight
+              </mat-error>
+          </p>
+        </div>
+  
+        <div fxLayout="row" fxLayoutGap="50px" fxLayout.xs="column">
+          <p class="bloodpressure">
+            <mat-form-field  appearance="outline">
+                <mat-label><b>Blood Pressure</b></mat-label>
+                <input matInput type="text" formControlName="BloodPressure" matInput placeholder="systolic / diastolic in mm Hg" required>               
+            </mat-form-field>
+            <mat-error *ngIf= "vitaldetails.controls['BloodPressure'].dirty && vitaldetails.hasError('required','BloodPressure')">Please enter your blood pressure rate
+            </mat-error>
+        </p>
+
+        <p class="bloodtemp">
+            <mat-form-field appearance="outline">
+                <mat-label><b>Blood Temperature</b></mat-label>
+                <input matInput type="text" formControlName="BloodTemp" matInput placeholder="in Fahrenheit" required>               
+            </mat-form-field>
+            <mat-error *ngIf= "vitaldetails.controls['BloodTemp'].dirty && vitaldetails.hasError('required','BloodTemp')">Please enter your blood temperature
+            </mat-error>
+        </p>
+        
+  
+     
+    </div>
+     
+    <div fxLayout="row" fxLayoutGap="50px" fxLayout.xs="column">
+        
+  
+  
+      <p class="resprate">
+        <mat-form-field appearance="outline">
+            <mat-label><b>Respiration Rate</b></mat-label>
+            <input matInput type="number" formControlName="RespirationRate" matInput placeholder="18" required>               
+        </mat-form-field>
+        <mat-error *ngIf= "vitaldetails.controls['RespirationRate'].dirty && vitaldetails.hasError('required','RespirationRate')">Please enter Respiration rate
+        </mat-error>
+    </p>
+  
+          
+          </div>
+  
+  
+           
+  
+  
+  <br>
+          <div>
+            <!-- <button mat-button matStepperNext>Next</button> -->
+            <button mat-raised-button matStepperNext color="primary" >Next </button>&nbsp;&nbsp;
+            <button mat-raised-button matStepperPrevious color="primary" >Save</button>
+        
+      </div>
+  
+  
+  
+      </mat-card>
+    </mat-step>
+
+        <mat-step [stepControl]="diagnosisdetails">
+            <mat-card [formGroup]= "diagnosisdetails" class="card" fxLayout="column" fxLayoutAlign="center center">
+              <ng-template matStepLabel>Diagnosis/ Procedures/ Medication</ng-template>
+      
+              <mat-card-header>
+                
+                <div class="heading">
+                
+                  <img src="../../../../assets/CTLogo/CardLogo.png" style="height:40px">
+                  
+                  <span class="cardTitle" style="font-size:18px" ><b>Diagnosis/ Procedures/ Medication</b></span>
+                </div>
+              
+              </mat-card-header>
+              <br>
+              
+              <mat-accordion class="example-headers-align">
+                <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Diagnosis
+                        </mat-panel-title>
+                        <mat-panel-description>
+                          Enter the Diagnosis Details
+                          <mat-icon>account_circle</mat-icon>
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+
+                      <p class="code">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Diagnosis Code</mat-label>
+                            <mat-select>
+                              <mat-option *ngFor="let item of ['Diagnosis Code1','Diagnosis Code2','Diagnosis Code3']" [value]='item'>
+                                {{item}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        <mat-error *ngIf= "diagnosisdetails.controls['DiagnosisCode'].dirty && diagnosisdetails.hasError('required','DiagnosisCode')">Please enter Respiration rate
+                      </mat-error>
+                  </p>
+
+                  <p class="desc">
+                    <mat-form-field appearance="outline">
+                      <mat-label><b>Diagnosis Description</b></mat-label>
+                      <input matInput type="text" formControlName="DiagnosisDesc" matInput placeholder="Enter the code" required>
+                    </mat-form-field>
+                    <mat-error *ngIf= "diagnosisdetails.controls['DiagnosisDesc'].dirty && diagnosisdetails.hasError('required','DiagnosisDesc')">Please enter Respiration rate
+                  </mat-error>
+              </p>
+
+              <p class="depr">
+                <mat-label><b>Is_Depricated:</b></mat-label>&nbsp;
+                <mat-radio-group formControlName="IsDeprDiag" aria-label="Select an option">
+                    <mat-radio-button value="1">Yes</mat-radio-button>&nbsp;
+                    <mat-radio-button value="2">No</mat-radio-button>
+                  </mat-radio-group>
+                <mat-error *ngIf= "diagnosisdetails.controls['IsDeprDiag'].dirty && diagnosisdetails.hasError('required','IsDeprDiag')">Please enter Respiration rate
+              </mat-error>
+          </p>
+
+          <mat-action-row>
+            <button mat-button color="primary" (click)="nextStep()">Next</button>
+          </mat-action-row>
+
+        </mat-expansion-panel>
+
+          <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Procedures
+              </mat-panel-title>
+              <mat-panel-description>
+                Enter the Procedure Details
+                <mat-icon>map</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <p class="proccode">
+                <mat-form-field appearance="outline">
+                    <mat-label>Procedure Code</mat-label>
+                    <mat-select>
+                      <mat-option *ngFor="let item of ['Procedure Code1','Procedure Code2','Procedure Code3']" [value]='item'>
+                        {{item}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            <mat-error *ngIf= "diagnosisdetails.controls['ProcedureCode'].dirty && diagnosisdetails.hasError('required','ProcedureCode')">Please enter Respiration rate
+          </mat-error>
+      </p>
+
+      <p class="procdesc">
+            <mat-form-field appearance="outline">
+              <mat-label>Procedure Description</mat-label>
+              <input matInput type="text" formControlName="ProcedureDesc" matInput placeholder="Enter the code" required>
+            </mat-form-field>
+            <mat-error *ngIf= "diagnosisdetails.controls['ProcedureDesc'].dirty && diagnosisdetails.hasError('required','ProcedureDesc')">Please enter Respiration rate
+          </mat-error>
+      </p>
+
+      <p class="deprproc">
+        <mat-label><b>Is_Depricated:</b></mat-label>&nbsp;
+        <mat-radio-group formControlName="IsDeprProc" aria-label="Select an option">
+            <mat-radio-button value="1">Yes</mat-radio-button>&nbsp;
+            <mat-radio-button value="2">No</mat-radio-button>
+          </mat-radio-group>
+        <mat-error *ngIf= "diagnosisdetails.controls['IsDeprProc'].dirty && diagnosisdetails.hasError('required','IsDeprProc')">Please enter Respiration rate
+      </mat-error>
+  </p>
+        
+            <mat-action-row>
+              <button mat-button color="warn" (click)="prevStep()">Previous</button>
+              <button mat-button color="primary" (click)="nextStep()">Next</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+               Medication
+              </mat-panel-title>
+              <mat-panel-description>
+                Enter the Medication Details
+                <mat-icon>vaccines</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <p class="id">
+                <mat-form-field appearance="outline">
+                    <mat-label>Drug Id</mat-label>
+                    <mat-select>
+                      <mat-option *ngFor="let item of ['Drug 1','Drug 2','Drug 3']" [value]='item'>
+                        {{item}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            <mat-error *ngIf= "diagnosisdetails.controls['DrugId'].dirty && diagnosisdetails.hasError('required','DrugId')">Please enter Respiration rate
+          </mat-error>
+      </p>
+
+      <p class="name">
+        <mat-form-field appearance="outline">
+            <mat-label>Drug Name</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let item of ['Aspirin','Morphine','Pantoprazole']" [value]='item'>
+                {{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+            <mat-error *ngIf= "diagnosisdetails.controls['DrugName'].dirty && diagnosisdetails.hasError('required','DrugName')">Please enter Respiration rate
+          </mat-error>
+      </p>
+
+      <p class="genname">
+        <mat-form-field appearance="outline">
+            <mat-label>Drug Generic Name</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let item of ['Azelastine','Azelastine nasal spray','Baclofen tablet']" [value]='item'>
+                {{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+            <mat-error *ngIf= "diagnosisdetails.controls['DrugGenName'].dirty && diagnosisdetails.hasError('required','DrugGenName')">Please enter Respiration rate
+          </mat-error>
+      </p>
+
+      <p class="brandname">
+        <mat-form-field appearance="outline">
+            <mat-label>Drug Brand Name</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let item of ['Astepro','Astelin','Lioresal']" [value]='item'>
+                {{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+            <mat-error *ngIf= "diagnosisdetails.controls['DrugBrandName'].dirty && diagnosisdetails.hasError('required','DrugBrandName')">Please enter Respiration rate
+          </mat-error>
+      </p>
+
+      <p class="form">
+        <mat-form-field appearance="outline">
+            <mat-label>Drug Form</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let item of ['Liquid','Capsules','Tablet','Injections','Drops']" [value]='item'>
+                {{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+            <mat-error *ngIf= "diagnosisdetails.controls['DrugForm'].dirty && diagnosisdetails.hasError('required','DrugForm')">Please enter Respiration rate
+          </mat-error>
+      </p>
+
+      <p class="drugdesc">
+            <mat-form-field appearance="outline">
+              <mat-label>Drug Description</mat-label>
+              <input matInput type="text" formControlName="DrugDesc" matInput placeholder="Enter the code" required>
+            </mat-form-field>
+            <mat-error *ngIf= "diagnosisdetails.controls['DrugDesc'].dirty && diagnosisdetails.hasError('required','DrugDesc')">Please enter Respiration rate
+          </mat-error>
+      </p>
+        
+            <mat-action-row>
+              <button mat-button color="warn" (click)="prevStep()">Previous</button>
+              <button mat-button color="primary" (click)="nextStep()">End</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        
+                
+              </mat-accordion>   
+          </mat-card>
+        </mat-step>
+    
+</mat-stepper>  

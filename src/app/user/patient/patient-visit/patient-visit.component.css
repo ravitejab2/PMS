@@ -1,0 +1,32 @@
+.radio{
+    gap:10px;
+    display:flex;
+  }
+  
+  .card{
+    box-shadow: 2px 2px 2px 2px;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 3%;
+    margin-top: 3%;
+    padding: 2%;
+   
+  }
+  
+  .heading{
+    display: inline-flex;
+  }
+  .cardTitle{
+    margin-top: 4%;
+   
+  }
+  
+  .mat-error{
+      font-size: smaller;
+      margin-top:-20px;
+  }
+  mat-stepper {
+   
+    margin-left: 10%;
+    margin-right: 10%;
+}

@@ -35,13 +35,17 @@ import { PatientVisitComponent } from 'src/app/user/patient/patient-visit/patien
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { PatientDetailslistComponent } from 'src/app/user/patient/patient-detailslist/patient-detailslist.component';
+import { SendnotesComponent } from 'src/app/inbox/Notes/sendnotes/sendnotes.component';
+import { ReceivedNotesComponent } from 'src/app/inbox/Notes/received-notes/received-notes.component';
+import { ViewNotesComponent } from 'src/app/inbox/Notes/view-notes/view-notes.component';
+import { ReplynoteComponent } from 'src/app/inbox/Notes/replynote/replynote.component';
 
 
 
 
 
 @NgModule({
-  declarations: [EmployeeRegisterComponent,SharedSidenavComponent,EmployeeDetailsComponent,PatientDetailsComponent,UserProfileComponent,PatientDetailslistComponent,PatientVisitComponent],
+  declarations: [EmployeeRegisterComponent,SharedSidenavComponent,EmployeeDetailsComponent,PatientDetailsComponent,UserProfileComponent,PatientDetailslistComponent,SendnotesComponent,ReplynoteComponent,ViewNotesComponent,ReceivedNotesComponent,PatientVisitComponent],
   imports: [
     CommonModule,
     RouterModule,

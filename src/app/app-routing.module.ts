@@ -14,6 +14,10 @@ import { PatientDetailsComponent } from './admin/patient-details/patient-details
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { PatientDetailslistComponent } from './user/patient/patient-detailslist/patient-detailslist.component';
 import { PatientVisitComponent } from './user/patient/patient-visit/patient-visit.component';
+import { ViewNotesComponent } from './inbox/Notes/view-notes/view-notes.component';
+import { SendnotesComponent } from './inbox/Notes/sendnotes/sendnotes.component';
+import { ReceivedNotesComponent } from './inbox/Notes/received-notes/received-notes.component';
+import { ReplynoteComponent } from './inbox/Notes/replynote/replynote.component';
 
 
 const routes: Routes = [
@@ -49,6 +53,22 @@ const routes: Routes = [
 {
   path:'admin/patient-visit',
   component:PatientVisitComponent
+},
+{
+  path: 'sendnotes',
+  component: SendnotesComponent
+},
+{
+  path: 'viewnotes',
+  component: ViewNotesComponent
+},
+{
+  path: 'receivednotes',
+  component: ReceivedNotesComponent
+},
+{
+  path: 'replynotes/:id',
+  component: ReplynoteComponent
 }
 ]}
 

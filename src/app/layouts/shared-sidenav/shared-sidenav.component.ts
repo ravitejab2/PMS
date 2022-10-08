@@ -38,11 +38,14 @@ constructor(public mediaObserver: MediaObserver,public router:Router,private ser
   if(this.userRole=='user'){
     this.personIs='Patient'
   }
-  else if(this.userRole=='Admin'){
+  else if(this.userRole=='admin'){
     this.personIs='Admin'
   }
-  else if(this.userRole=='Physician'){
+  else if(this.userRole=='physician'){
     this.personIs='Physician'
+  }
+  else if(this.userRole=='nurse'){
+    this.personIs='Nurse'
   }
   
 }

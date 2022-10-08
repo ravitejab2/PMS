@@ -42,7 +42,8 @@ export class LoginComponent implements OnInit {
        localStorage.setItem('userID',this.response.dataSet.id); 
        localStorage.setItem('userRole', JSON.stringify(this.response.dataSet.roles[0]));
        localStorage.setItem('userName',this.response.dataSet.firstName +' '+this.response.dataSet.lastName);
-
+       localStorage.setItem('email',this.response.dataSet.email);
+       
        this.toaster.success("User Login Successfull");
         if(!this.response.dataSet.isPasswordChanged){
           //console.log(!data.dateSet.isPasswordChanged)
@@ -63,7 +64,7 @@ export class LoginComponent implements OnInit {
       
       }
       else{
-        console.log(data.responseMessage);
+        //console.log(data.responseMessage);
         this.toaster.error(data.responseMessage)
       }
     },
@@ -72,7 +73,7 @@ export class LoginComponent implements OnInit {
     }));
   }
   else{
-    console.log(this.loginForm.value);
+    //console.log(this.loginForm.value);
     this.validateAllFromFields(this.loginForm);
   }
   }

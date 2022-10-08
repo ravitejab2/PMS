@@ -80,7 +80,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ToastrModule.forRoot(),
     MatSelectModule,
     MatTooltipModule,
-    SharedSidenavModule,
+   
     
     
    

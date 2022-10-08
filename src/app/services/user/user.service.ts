@@ -1,7 +1,18 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { LoginComponent } from 'src/app/landing-screens/login/login.component';
 import { ResponseModel } from '../../models/responseModel';
+
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+  role:number;
+  title: string;
+  contact:number;
+ dateOfBirth:Date;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +53,15 @@ export class UserService {
     return this.http.post<ResponseModel>(this.BaseURI + '/login', data);
 
   }
+
+  getUserProfile(id:number):Observable<any>{
+    let token=localStorage.getItem("userToken");
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer '+token
+    })
+    return this.http.get<ResponseModel>(this.BaseURI +'/profile-user/'+id,{headers:headers});
+  }
+
 
   changePassword(id:number,old:string,pwd:string):Observable<any>{
     let token=localStorage.getItem("userToken");

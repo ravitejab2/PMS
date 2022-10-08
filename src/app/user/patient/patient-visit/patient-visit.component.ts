@@ -41,6 +41,7 @@ export class PatientVisitComponent implements OnInit {
     });
 
     this.diagnosisdetails=this.formBuilder.group({
+     
       DiagnosisCode: new FormControl (null,[Validators.required]), //txtbox/dropdown list
       DiagnosisDesc: new FormControl (null,[Validators.required]), //dropdown
       IsDeprDiag: new FormControl (null,[Validators.required]), //bool

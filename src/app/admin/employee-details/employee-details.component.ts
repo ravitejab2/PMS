@@ -51,7 +51,6 @@ export class EmployeeDetailsComponent implements OnInit {
     this.fetchAllEmployees();
    
     
-    
   }
 
   fetchAllEmployees(){
@@ -93,7 +92,7 @@ export class EmployeeDetailsComponent implements OnInit {
   deactivate(id:number){
     this.service.deactivateUser(id).subscribe((data: ResponseModel) => {
       if (data.responseCode == 1) {
-       this.toasts.success(data.responseMessage);
+       this.toasts.error(data.responseMessage);
        this.fetchAllEmployees();
        
       }

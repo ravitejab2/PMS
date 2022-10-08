@@ -13,6 +13,7 @@
 .mat-expansion-panel{
     box-shadow: 2px 2px 2px 2px lightblue;
 }
-.mat-raised-button{
-    margin-left:150%
-}
+
+
+input{
+border:none;}

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ResponseModel } from 'src/app/models/responseModel';
 import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
@@ -8,6 +9,9 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class PatientService {
   baseUrl:string=environment.baseApiUrl;
+  patientApi:string= environment.patientApiUrl;
+  emergencyApi:string=environment.emergencyContactApiUrl;
+ allergyApi:string=environment.allergyApiUrl;
  
   constructor(private http:HttpClient) { }
 
@@ -41,4 +45,19 @@ export class PatientService {
     })
     return this.http.post(this.baseUrl + '/deactivate-user',id,{headers:headers});
   }
+
+  postDemographics(body:any):Observable<any>
+{
+return this.http.post<ResponseModel>(this.patientApi +'/addDetails',body)
+}
+
+postEmergencyContact(body:any):Observable<any>{
+  return this.http.post<ResponseModel>(this.emergencyApi +'/addContacts',body)
+}
+
+postAllergyDetails(body:any):Observable<any>{
+  return this.http.post<ResponseModel>(this.allergyApi +'/addAllergies',body)
+
+}
+
 }

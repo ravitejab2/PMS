@@ -34,6 +34,7 @@ constructor(public mediaObserver: MediaObserver,public router:Router,private ser
   }
   console.log(this.userRole);
   console.log('AboveId');
+ 
   if(this.userRole=='user'){
     this.personIs='Patient'
   }

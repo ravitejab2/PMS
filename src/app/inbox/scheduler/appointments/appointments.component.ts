@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AppointmentViewModel } from 'src/app/models/appointmentViewModel';
 import { ResponseModel } from 'src/app/models/responseModel';
 import { AppointmentService } from 'src/app/services/schedule/appointment.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-appointments',
@@ -21,9 +22,11 @@ export class AppointmentsComponent implements OnInit {
   response: any;
   dataSource: any;
   events: AppointmentViewModel[]=[];
-  constructor(private service:AppointmentService,private toastr:ToastrService) { }
+  userInfo: any;
+  //patientName!: string;
+  constructor(private service:AppointmentService,private toastr:ToastrService,private userService:UserService) { }
 
-  displayedColumns: string[] = ['appointmentId','appointmentdate', 'appointmentStartdate','appointmentEnddate','meetingtitle','status','action'];
+  displayedColumns: string[] = ['appointmentId','appointmentdate','patientId','physicianId' ,'appointmentStartdate','appointmentEnddate','meetingtitle','status','action'];
   
   ngOnInit(): void {
     const user = localStorage.getItem("userRole");
@@ -40,18 +43,42 @@ export class AppointmentsComponent implements OnInit {
 
   }
 
+
   loadAppointments(){
    
-    this.service.getAllAppointments(this.userId).subscribe((data:ResponseModel)=>{
+    this.service.getAllAppointments(this.userId,this.userRole).subscribe((data:ResponseModel)=>{
       if(data.responseCode==1){
         this.response=data;
-       console.log(this.response);
+       
         this.events=this.response.dataSet;
+        debugger
+        this.events.forEach(item=>{
+          this.userService.getUserinfo(item.patientId).subscribe((data:ResponseModel)=>{
+            if(data.responseCode==1){
+             
+              this.userInfo=data.dataSet;
+              console.log('name',this.userInfo)
+              item.patientId=this.userInfo.name;
+              console.log('name',item.patientId)
+            }
+          });
+        });
+
+        this.events.forEach(item=>{
+          this.userService.getUserinfo(item.physicianId).subscribe((data:ResponseModel)=>{
+            if(data.responseCode==1){
+              this.userInfo=data.dataSet;
+              item.physicianId=this.userInfo.name;
+            }
+          });
+        });
+
+
         this.dataSource = new MatTableDataSource(this.events); 
         console.log(this.dataSource);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        console.log(this.events);
+        
       }
       else{
         console.log("error");

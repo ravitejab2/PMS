@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
         if(this.response.dataSet.roles[0]=="physician")
         this.router.navigate(['/dashboard']);
         if(this.response.dataSet.roles[0]=="admin")
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboard/admin']);
         }
       
       }

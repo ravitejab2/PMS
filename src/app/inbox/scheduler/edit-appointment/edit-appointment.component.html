@@ -66,7 +66,9 @@
       <div>
         <p  fxLayoutGap="15px" fxLayout.xs="column">
             <button mat-raised-button class="loginButton" color="primary" (click)= "bookAppointment()">Update Appointment</button>
-            <button mat-raised-button color="primary" type="reset" >Cancel</button>
+            <button *ngIf="userRole!='user'"  mat-raised-button color="primary" routerLink="/dashboard/calender" type="reset" >Cancel</button>
+            <button *ngIf="userRole =='user'" mat-raised-button color="primary" routerLink="/dashboard" type="reset" >Cancel</button>
+
         </p>
     </div>
       

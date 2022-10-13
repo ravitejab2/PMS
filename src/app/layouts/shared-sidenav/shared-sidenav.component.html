@@ -78,18 +78,22 @@
           </mat-card-header>
         </mat-card>
 
-        <h3 matSubheader>User Control</h3>
+        <h3 matSubheader *ngIf="userRole!='admin'">User Control</h3>
 
-        <mat-list-item [routerLink]="'/dashboard'">
+        <mat-list-item *ngIf="userRole!='admin'" [routerLink]="'/dashboard'">
+          <mat-icon mat-list-icon style="font-size:20px;margin-left:6px">home</mat-icon>
+          <span class="menu-item">Home</span>
+        </mat-list-item>
+        <mat-list-item *ngIf="userRole =='admin'" [routerLink]="'/dashboard/admin'">
           <mat-icon mat-list-icon style="font-size:20px;margin-left:6px">home</mat-icon>
           <span class="menu-item">Home</span>
         </mat-list-item>
   
-        <mat-list-item [routerLink]="'/dashboard/inbox'">
+        <mat-list-item *ngIf="userRole!='admin'" [routerLink]="'/dashboard/inbox'">
           <mat-icon mat-list-icon style="font-size:20px;margin-left:6px">all_inbox</mat-icon>
           <span class="menu-item">Inbox</span>
         </mat-list-item>
-        <mat-accordion>
+        <mat-accordion  *ngIf="userRole=='physician' || userRole=='nurse'">
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
@@ -100,7 +104,7 @@
                 </div>
               </mat-panel-title>
             </mat-expansion-panel-header>
-              <mat-list-item [routerLink]="'/dashboard/sendnotes'" >
+              <mat-list-item  [routerLink]="'/dashboard/sendnotes'" >
                 <!-- Entradas de cada submenú  -->
                 <div fxLayout="row" fxLayoutAlign="space-between center" >
                  <mat-icon mat-list-icon style="font-size:20px">all_inbox</mat-icon>
@@ -123,7 +127,7 @@
               </mat-list-item>
           </mat-expansion-panel>
         </mat-accordion>
-        <mat-accordion >
+        <mat-accordion *ngIf="userRole!='admin'">
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
@@ -141,7 +145,7 @@
                   Add Appointment
                 </div>
               </mat-list-item>
-              <mat-list-item [routerLink]="'/dashboard/calender'" >
+              <mat-list-item *ngIf="userRole=='physician' || userRole=='nurse'"  [routerLink]="'/dashboard/calender'" >
                 <!-- Entradas de cada submenú  -->
                 <div fxLayout="row" fxLayoutAlign="space-between center" >
                <mat-icon mat-list-icon style="font-size:20px">edit_calendar</mat-icon>
@@ -162,7 +166,7 @@
           <span class="menu-item">Scheduler</span>
         </mat-list-item> -->
 
-        <mat-accordion>
+        <mat-accordion *ngIf="userRole!='admin'">
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
@@ -173,28 +177,28 @@
                 </div>
               </mat-panel-title>
             </mat-expansion-panel-header>
-              <mat-list-item [routerLink]="'/dashboard/employees/patient'" >
+              <mat-list-item *ngIf="userRole=='physician' || userRole=='nurse'" [routerLink]="'/dashboard/employees/patient'" >
                 <!-- Entradas de cada submenú  -->
                 <div fxLayout="row" fxLayoutAlign="space-between center" >
                   <mat-icon>vaccines</mat-icon>&nbsp;
                   Patient Details
                 </div>
               </mat-list-item>
-              <mat-list-item [routerLink]="'/dashboard/patient-demographic'" >
+              <mat-list-item *ngIf="userRole=='user'" [routerLink]="'/dashboard/patient-demographic'" >
                 <!-- Entradas de cada submenú  -->
                 <div fxLayout="row" fxLayoutAlign="space-between center" >
                   <mat-icon>vaccines</mat-icon>&nbsp;
                   Demographic
                 </div>
               </mat-list-item>
-              <mat-list-item [routerLink]="'/dashboard/employee/patient-visit'" >
-                <!-- Entradas de cada submenú  -->
+              <!-- <mat-list-item [routerLink]="'/dashboard/employee/patient-visit'" >
+               
                 <div fxLayout="row" fxLayoutAlign="space-between center" >
                   <mat-icon>vaccines</mat-icon>&nbsp;
                   Visit Details
                 </div>
-              </mat-list-item>
-              <mat-list-item [routerLink]="'/dashboard/patient/visit-history'" >
+              </mat-list-item> -->
+              <mat-list-item *ngIf="userRole=='user'" [routerLink]="'/dashboard/patient/visit-history'" >
                 <!-- Entradas de cada submenú  -->
                 <div fxLayout="row" fxLayoutAlign="space-between center" >
                   <mat-icon>vaccines</mat-icon>&nbsp;
@@ -206,16 +210,16 @@
        
         
         <mat-divider></mat-divider>
-        <h3 matSubheader>Admin Control</h3>
+        <h3 matSubheader *ngIf="userRole=='admin'">Admin Control</h3>
        
-        <mat-list-item [routerLink]="'/dashboard/admin/emp-details'">
+        <mat-list-item *ngIf="userRole=='admin'" [routerLink]="'/dashboard/admin/emp-details'">
           <mat-icon mat-list-icon style="font-size:20px"><span class="material-icons">
             hail
             </span></mat-icon>
           <span class="menu-item">Employees</span>
         </mat-list-item>
   
-        <mat-list-item [routerLink]="'/dashboard/admin/patient-details'">
+        <mat-list-item *ngIf="userRole=='admin'" [routerLink]="'/dashboard/admin/patient-details'">
           <mat-icon mat-list-icon style="font-size:20px">personal_injury</mat-icon>
           <span class="menu-item">Patients</span>
         </mat-list-item>

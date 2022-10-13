@@ -33,6 +33,7 @@ import { EditAppointmentComponent } from './inbox/scheduler/edit-appointment/edi
 import { AppointmentsComponent } from './inbox/scheduler/appointments/appointments.component';
 
 
+
 const routes: Routes = [
   {path:'register',component:RegisterComponent},
   {path:'',redirectTo:'/login',pathMatch:'full'},

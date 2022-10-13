@@ -51,12 +51,13 @@ import { PatientVisitHistoryComponent } from 'src/app/user/patient/patient-visit
 import { EmployeeProfileComponent } from 'src/app/admin/employee-profile/employee-profile.component';
 import { DayPilotModule } from '@daypilot/daypilot-lite-angular';
 import { AddAppointmentComponent } from 'src/app/inbox/scheduler/add-appointment/add-appointment.component';
-import { AppointmentsComponent } from 'src/app/inbox/scheduler/appointments/appointments.component';
+
 import { CalenderComponent } from 'src/app/inbox/scheduler/calender/calender.component';
 import { EditAppointmentComponent } from 'src/app/inbox/scheduler/edit-appointment/edit-appointment.component';
 import { ViewCalenderComponent } from 'src/app/inbox/scheduler/view-calender/view-calender.component';
 import { AppointmentService } from 'src/app/services/schedule/appointment.service';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import { AppointmentsComponent } from 'src/app/inbox/scheduler/appointments/appointments.component';
 
 
 

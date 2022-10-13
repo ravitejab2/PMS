@@ -33,7 +33,7 @@
   
       <ng-container matColumnDef="dateOfJoining">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>DOJ</th>
-        <td mat-cell *matCellDef="let row"> {{row.dateOfJoining}}</td>
+        <td mat-cell *matCellDef="let row"> {{row.dateOfJoining  | date:'shortDate'}}</td>
       </ng-container>
   
    

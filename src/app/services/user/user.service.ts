@@ -152,5 +152,13 @@ export class UserService {
     return this.http.get<ResponseModel>(this.BaseURI +'/employee-profile/'+id,{headers:headers});
   }
 
+  getUserinfo(id:number):Observable<any>{
+    let token=localStorage.getItem("userToken");
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer '+token
+    })
+    return this.http.get<ResponseModel>(this.BaseURI +'/users/'+id,{headers:headers});
+  }
+
 
 }

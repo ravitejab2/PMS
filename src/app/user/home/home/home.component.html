@@ -1,6 +1,6 @@
 <div class="container" fxLayout="column">
-    <a routerLink="#" style="text-decoration: none;">
-        <mat-card style="" class="card" fxLayout="column" fxLayoutGap="60px" fxLayoutAlign="center center">
+    <a routerLink="/dashboard/appointments" style="text-decoration: none;">
+        <mat-card class="card" fxLayout="column" fxLayoutGap="60px" fxLayoutAlign="center center">
 
             <mat-card-header >
                 <img src="https://cdn0.iconfinder.com/data/icons/business-and-finance-513/304/Design_set_Color-01-03-1024.png"
@@ -11,7 +11,7 @@
             <mat-card-content fxLayoutAlign="space-between center" fxLayout="column">
                 <div>
                     <p style="font-size:xx-large;color:White;margin-left:20%" >You have Total</p><br>
-                    <p style="font-size:50px;color:midnightblue;margin-left: 40%;"><b>54</b></p>
+                    <p style="font-size:50px;color:midnightblue;margin-left: 40%;"><b>{{appointmentCount}}</b></p>
                     <br>
                     <p style="font-size:xx-large;color:White;">Upcoming Appointments</p>
                 </div>
@@ -21,7 +21,7 @@
 
     </a>
 
-    <a routerLink="/dashboard/receivednotes" style="text-decoration: none;">
+    <a *ngIf="userRole=='physician' || userRole=='nurse'" routerLink="/dashboard/receivednotes" style="text-decoration: none;">
         <mat-card class="card" fxLayout="column" fxLayoutGap="60px" fxLayoutAlign="center center">
             <mat-card-header >
                 <img src="https://cdn3.iconfinder.com/data/icons/business-people-40/313/Flat_Blue-09-24-512.png"
@@ -31,10 +31,10 @@
             </mat-card-header> 
    
             
-            <mat-card-content fxLayoutAlign="space-evenly center" fxLayout="column" fxLayoutGap="">
+            <mat-card-content  fxLayoutAlign="space-evenly center" fxLayout="column" fxLayoutGap="">
                 <div>
                     <p style="font-size:xx-large;color:White;" >You have Received</p><br>
-                    <p style="font-size:50px;color:midnightblue;margin-left: 35%;"><b>54</b></p>
+                    <p style="font-size:50px;color:midnightblue;margin-left: 35%;"><b>{{notesCount}}</b></p>
                     <br>
                     <p style="font-size:xx-large;color:White;margin-left: 8%;">New Messages</p>
                 </div>

@@ -26,6 +26,7 @@ export class EditAppointmentComponent implements OnInit {
   appointment!: AppointmentModel;
   meetingTitle!: string;
   description!: string;
+  userRole: any;
   constructor(
     private route: ActivatedRoute,
     private appointmentService: AppointmentService,
@@ -42,6 +43,10 @@ export class EditAppointmentComponent implements OnInit {
   });
   ngOnInit(): void {
     
+      const user = localStorage.getItem("userRole");
+      if (typeof user === 'string') {
+        this.userRole = JSON.parse(user) // ok
+    }
     this.getAppointmentDetails();
    
     

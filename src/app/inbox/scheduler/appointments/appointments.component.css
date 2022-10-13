@@ -1,15 +1,13 @@
 table {
-
-    /* margin-top: 6%; */
-  
       width: 100%;
-  
+      padding-left:2%
     }
   
-    h2{
-  
-     margin-left: 40%;
-  
-     justify-content: center;
-  
-    }
+   .header{
+    text-align: center;
+    margin-top:1%;
+    color:rgb(51, 122, 145)
+   }
+   .mat-raised-button{
+     margin-top: 6px;
+   }

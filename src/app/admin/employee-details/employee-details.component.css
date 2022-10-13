@@ -16,5 +16,8 @@ td.mat-raised-button{
     
 }
 .mat-raised-button{
-    margin-left:20%;
+    margin-left:2%;
+}
+.button{
+    margin-left:50%
 }

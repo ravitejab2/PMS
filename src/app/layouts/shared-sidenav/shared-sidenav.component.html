@@ -20,7 +20,11 @@
       alt="Shiba Inu">{{ActiveUsers}}
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/dashboard/user-profile">
+      <button *ngIf="userRole =='user'" mat-menu-item routerLink="/dashboard/user-profile">
+        <mat-icon style="color:rgb(178, 19, 112)">info</mat-icon>
+        <span>Profile</span>
+      </button>
+      <button *ngIf="userRole!='user'" mat-menu-item routerLink="/dashboard/employee/profile">
         <mat-icon style="color:rgb(178, 19, 112)">info</mat-icon>
         <span>Profile</span>
       </button>
@@ -29,7 +33,7 @@
         <span>Sign Out</span>
       </button>
     </mat-menu>
-    <button mat-raised-button color="primary" ><mat-icon style="color:white">contacts</mat-icon>About Us</button>
+    <button mat-raised-button color="primary" routerLink="/about-us"><mat-icon style="color:white">contacts</mat-icon>About Us</button>
   </div>
 </mat-toolbar-row>
 
@@ -66,17 +70,29 @@
       <mat-nav-list>  
 
 
-        <mat-card>
+        <mat-card *ngIf="userRole!='user'">
           <mat-card-header>
             <img style="height:40px;width:30px" mat-card-avatar
             src="https://cdn3.iconfinder.com/data/icons/avatars-flat/33/man_5-1024.png"
             alt="Shiba Inu"> 
   
-            <mat-card-title><a routerLink="/dashboard/user-profile" style="font-size:15px">{{ActiveUsers}}</a></mat-card-title>
+            <mat-card-title><a routerLink="/dashboard/employee/profile" style="font-size:15px">{{ActiveUsers}}</a></mat-card-title>
             
-            <mat-card-subtitle><a routerLink="/dashboard/user-profile">{{personIs}}</a></mat-card-subtitle>
+            <mat-card-subtitle><a routerLink="/dashboard/employee/profile">{{personIs}}</a></mat-card-subtitle>
           </mat-card-header>
         </mat-card>
+        
+        <mat-card *ngIf="userRole=='user'">
+        <mat-card-header>
+          <img style="height:40px;width:30px" mat-card-avatar
+          src="https://cdn3.iconfinder.com/data/icons/avatars-flat/33/man_5-1024.png"
+          alt="Shiba Inu"> 
+
+          <mat-card-title><a routerLink="/dashboard/user-profile" style="font-size:15px">{{ActiveUsers}}</a></mat-card-title>
+          
+          <mat-card-subtitle><a routerLink="/dashboard/user-profile">{{personIs}}</a></mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
 
         <h3 matSubheader *ngIf="userRole!='admin'">User Control</h3>
 
@@ -89,17 +105,18 @@
           <span class="menu-item">Home</span>
         </mat-list-item>
   
-        <mat-list-item *ngIf="userRole!='admin'" [routerLink]="'/dashboard/inbox'">
+        <mat-list-item *ngIf="userRole=='physician' || userRole=='nurse'" [routerLink]="'/dashboard/inbox'">
           <mat-icon mat-list-icon style="font-size:20px;margin-left:6px">all_inbox</mat-icon>
           <span class="menu-item">Inbox</span>
         </mat-list-item>
+
         <mat-accordion  *ngIf="userRole=='physician' || userRole=='nurse'">
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
                 <!-- Cabeceras del submenu -->
                 <div fxLayout="row" fxLayoutAlign="space-between center" >
-                  <mat-icon mat-list-icon style="font-size:20px">all_inbox</mat-icon>
+                  <mat-icon mat-list-icon style="font-size:20px">question_answer</mat-icon>
                   Notes
                 </div>
               </mat-panel-title>
@@ -107,21 +124,21 @@
               <mat-list-item  [routerLink]="'/dashboard/sendnotes'" >
                 <!-- Entradas de cada submenú  -->
                 <div fxLayout="row" fxLayoutAlign="space-between center" >
-                 <mat-icon mat-list-icon style="font-size:20px">all_inbox</mat-icon>
+                 <mat-icon mat-list-icon style="font-size:20px">send</mat-icon>
                   Send Note
                 </div>
               </mat-list-item>
               <mat-list-item [routerLink]="'/dashboard/viewnotes'" >
                 <!-- Entradas de cada submenú  -->
                 <div fxLayout="row" fxLayoutAlign="space-between center" >
-               <mat-icon mat-list-icon style="font-size:20px">all_inbox</mat-icon>
+               <mat-icon mat-list-icon style="font-size:20px">drafts</mat-icon>
                   View Sent Notes
                 </div>
               </mat-list-item>
               <mat-list-item [routerLink]="'/dashboard/receivednotes'" >
                 <!-- Entradas de cada submenú  -->
                 <div fxLayout="row" fxLayoutAlign="space-between center" >
-                  <mat-icon mat-list-icon style="font-size:20px">all_inbox</mat-icon>
+                  <mat-icon mat-list-icon style="font-size:20px">markunread_mailbox</mat-icon>
                   Received Notes 
                 </div>
               </mat-list-item>
@@ -133,7 +150,7 @@
               <mat-panel-title>
                 <!-- Cabeceras del submenu -->
                 <div fxLayout="row" fxLayoutAlign="space-between center" >
-                  <mat-icon mat-list-icon style="font-size:20px">edit_calendar</mat-icon>
+                  <mat-icon mat-list-icon style="font-size:20px">schedule</mat-icon>
                   Scheduler
                 </div>
               </mat-panel-title>
@@ -142,20 +159,20 @@
                 <!-- Entradas de cada submenú  -->
                 <div fxLayout="row" fxLayoutAlign="space-between center" >
                  <mat-icon mat-list-icon style="font-size:20px">edit_calendar</mat-icon>
-                  Add Appointment
+                  Book
                 </div>
               </mat-list-item>
               <mat-list-item *ngIf="userRole=='physician' || userRole=='nurse'"  [routerLink]="'/dashboard/calender'" >
                 <!-- Entradas de cada submenú  -->
                 <div fxLayout="row" fxLayoutAlign="space-between center" >
-               <mat-icon mat-list-icon style="font-size:20px">edit_calendar</mat-icon>
+               <mat-icon mat-list-icon style="font-size:20px">calendar_month</mat-icon>
                   View Calender
                 </div>
               </mat-list-item>
               <mat-list-item [routerLink]="'/dashboard/appointments'" >
                 <!-- Entradas de cada submenú  -->
                 <div fxLayout="row" fxLayoutAlign="space-between center" >
-                  <mat-icon mat-list-icon style="font-size:20px">edit_calendar</mat-icon>
+                  <mat-icon mat-list-icon style="font-size:20px">event_available</mat-icon>
                   Appointments
                 </div>
               </mat-list-item>
@@ -180,14 +197,14 @@
               <mat-list-item *ngIf="userRole=='physician' || userRole=='nurse'" [routerLink]="'/dashboard/employees/patient'" >
                 <!-- Entradas de cada submenú  -->
                 <div fxLayout="row" fxLayoutAlign="space-between center" >
-                  <mat-icon>vaccines</mat-icon>&nbsp;
+                  <mat-icon>receipt_long</mat-icon>&nbsp;
                   Patient Details
                 </div>
               </mat-list-item>
               <mat-list-item *ngIf="userRole=='user'" [routerLink]="'/dashboard/patient-demographic'" >
                 <!-- Entradas de cada submenú  -->
                 <div fxLayout="row" fxLayoutAlign="space-between center" >
-                  <mat-icon>vaccines</mat-icon>&nbsp;
+                  <mat-icon>assignment_ind</mat-icon>&nbsp;
                   Demographic
                 </div>
               </mat-list-item>
@@ -201,7 +218,7 @@
               <mat-list-item *ngIf="userRole=='user'" [routerLink]="'/dashboard/patient/visit-history'" >
                 <!-- Entradas de cada submenú  -->
                 <div fxLayout="row" fxLayoutAlign="space-between center" >
-                  <mat-icon>vaccines</mat-icon>&nbsp;
+                  <mat-icon>history_edu</mat-icon>&nbsp;
                   Visit History
                 </div>
               </mat-list-item>

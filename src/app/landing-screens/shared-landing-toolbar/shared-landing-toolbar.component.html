@@ -3,6 +3,7 @@
     <mat-toolbar-row fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
  
       <span><img src="../../../assets/CTLogo/newLogocolor.png" style="height:65px;margin-top:7px"></span>
+    
       <span class="title" style="color:white" >CT General Hospital</span>
    
    
@@ -11,7 +12,10 @@
     <button mat-raised-button color="primary" (click)="backTologin()">
         <mat-icon style="color:white">login</mat-icon>Login
     </button>
-    <button mat-raised-button color="primary"><mat-icon style="color:white">contacts</mat-icon>About Us</button>
+    <button mat-raised-button routerLink="/register" color="primary">
+      <mat-icon style="color:white">how_to_register</mat-icon>SignUp
+  </button>
+    <button mat-raised-button color="primary" routerLink="/about-us"><mat-icon style="color:white">contacts</mat-icon>About Us</button>
   </div>
   </mat-toolbar-row>
   </mat-toolbar>

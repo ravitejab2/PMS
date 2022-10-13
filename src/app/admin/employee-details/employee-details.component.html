@@ -3,10 +3,10 @@
   <mat-label>Search</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Jhon" #input>
 </mat-form-field>
-<div fxLayoutGap="">
+<span class="button">
 <button mat-raised-button color="primary" (click)="exporter.exportTable('csv',{fileName:'EmployeesRecord'})">Export</button>
 <button mat-raised-button color="primary" (click)="goToRegister()">Add Employee</button>
-</div>
+</span>
 </div>
 <div class="mat-elevation-z8" >
   <table  mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter" [hiddenColumns]="[6]" matSort>

@@ -58,6 +58,8 @@ import { ViewCalenderComponent } from 'src/app/inbox/scheduler/view-calender/vie
 import { AppointmentService } from 'src/app/services/schedule/appointment.service';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { AppointmentsComponent } from 'src/app/inbox/scheduler/appointments/appointments.component';
+import { AboutUsComponent } from '../about-us/about-us.component';
+
 
 
 
@@ -90,7 +92,9 @@ import { AppointmentsComponent } from 'src/app/inbox/scheduler/appointments/appo
     AppointmentsComponent,
     CalenderComponent,
     EditAppointmentComponent,
-    ViewCalenderComponent
+    ViewCalenderComponent,
+    
+  
    
   
   ],
@@ -131,7 +135,8 @@ import { AppointmentsComponent } from 'src/app/inbox/scheduler/appointments/appo
     MatCheckboxModule,
     MatGridListModule,
     DayPilotModule,
-    MatTableExporterModule
+    MatTableExporterModule,
+
 
 
   ],

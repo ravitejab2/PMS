@@ -91,6 +91,7 @@ export class ReplynoteComponent implements OnInit {
       this.noteservice.sendNotes(this.noteobj).subscribe((data:ResponseModel)=>{
         if(data.responseCode==1){
           this.toaster.success(data.responseMessage);
+          this.router.navigateByUrl("/dashboard/receivednotes")
         }
         else{
           this.toaster.error(data.responseMessage)

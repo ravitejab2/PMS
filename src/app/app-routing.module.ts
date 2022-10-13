@@ -31,21 +31,27 @@ import { CalenderComponent } from './inbox/scheduler/calender/calender.component
 import { AddAppointmentComponent } from './inbox/scheduler/add-appointment/add-appointment.component';
 import { EditAppointmentComponent } from './inbox/scheduler/edit-appointment/edit-appointment.component';
 import { AppointmentsComponent } from './inbox/scheduler/appointments/appointments.component';
+import { AboutUsComponent } from './layouts/about-us/about-us.component';
 
 
 
 const routes: Routes = [
   {path:'register',component:RegisterComponent},
-  {path:'',redirectTo:'/login',pathMatch:'full'},
+  {path:'',redirectTo:'/about-us',pathMatch:'full'},
   {path:'login',component:LoginComponent},
+  {path:'about-us',component:AboutUsComponent},
   {path:'forgot-password',component:ForgotPasswordComponent},
   {path:'change-password',component:ChangePasswordComponent,canActivate:[AuthGuardService]},
   
-  {path: 'dashboard',component: SharedSidenavComponent,
+  {path: 'dashboard',component: SharedSidenavComponent,canActivate:[AuthGuardService],
   children: [
    
     {
       path: '',
+      component:HomeComponent
+    },
+    {
+      path: 'about-us',
       component:HomeComponent
     },
 
@@ -60,7 +66,7 @@ const routes: Routes = [
     component: EmployeeRegisterComponent
   }, 
   {
-    path: 'admin/profile',
+    path: 'employee/profile',
     component:EmployeeProfileComponent
   },
   {

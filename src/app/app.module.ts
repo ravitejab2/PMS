@@ -31,7 +31,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ResponsiveService } from './services/responsive/responsive.service';
 import { DatePipe } from '@angular/common';
 import {MatSelectModule} from '@angular/material/select';
-import { AboutUsComponent } from './layouts/about-us/about-us.component';
+
 import { SharedSidenavModule } from './layouts/shared-sidenav/shared-sidenav.module';
 
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -41,6 +41,8 @@ import { PatientDemographicsComponent } from './user/providers/patient-demograph
 import { PatientVisitHistoryComponent } from './user/patient/patient-visit-history/patient-visit-history.component';
 import { EmployeeProfileComponent } from './admin/employee-profile/employee-profile.component';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import { AboutUsComponent } from './layouts/about-us/about-us.component';
+
 
 ;
 
@@ -57,8 +59,9 @@ import { MatTableExporterModule } from 'mat-table-exporter';
     ForgotPasswordComponent,
     ChangePasswordComponent,
     SharedLandingToolbarComponent,
-    AboutUsComponent,
-
+    AboutUsComponent
+   
+    
   
    
    

@@ -1,12 +1,13 @@
 .title{
     font-size: 24px;
-   margin-left:-45.5%;
+   margin-left:-31%;
    margin-right:1px
   }
   .mat-toolbar{
       background-color:#4f8bc0 ;
       z-index: 2;
       position: relative;
+      height:12%;
   }
   .mat-icon-button{
       margin-bottom: 17px;

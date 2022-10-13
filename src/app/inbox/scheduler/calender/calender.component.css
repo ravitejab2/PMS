@@ -1,0 +1,9 @@
+.buttons{
+    display: flex;
+    justify-content: spa;
+    align-items: center;
+    padding:10px;
+}
+.navigations{
+    display: flex;
+}

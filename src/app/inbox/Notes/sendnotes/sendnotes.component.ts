@@ -63,7 +63,8 @@ export class SendnotesComponent implements OnInit {
   }
   const mail = localStorage.getItem("email");
   if (typeof mail === 'string') {
-    this.senderEmail = mail; // ok
+    this.senderEmail = mail;
+    console.log(this.senderEmail) // ok
   }
      
     
@@ -118,7 +119,7 @@ export class SendnotesComponent implements OnInit {
       
       if(data.responseCode==1){
         this.response=data;
-        //console.log(data);
+        console.log(data);
         this.employees=this.response.dataSet;
         //console.log(this.employees);
       }

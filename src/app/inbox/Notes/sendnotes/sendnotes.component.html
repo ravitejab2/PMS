@@ -6,13 +6,18 @@
             
         <div class="heading">
         
-          <img src="../../assets/CTLogo/logowithwhitebg.png" style="height:40px">
-          
-          <span class="cardTitle" style="font-size:18px" ><b>Send Note</b></span>
+          <img src="../../../assets/CTLogo/CardLogo.png" style="height:40px">
+           <mat-divider></mat-divider>
+              
+          <span class="cardTitle" style="font-size:18px" ><b>Send Notes</b></span>
+         
         </div>
+        
       
       </mat-card-header>
+      
     <mat-form-field appearance="outline">
+     
         <mat-label><b>Receiver Name</b></mat-label>
         <mat-select  formControlName="ReceiverName"  (ngModelChange)="onDropdownChange($event)">
           <mat-option *ngFor= "let emp of employees" value="{{emp.id}}" [attr.data-id]="emp.id" attr.data-email="{{emp.email}}" attr.data-name="{{emp.name}}" attr.data-role="{{emp.role}}">
@@ -58,10 +63,11 @@
         <mat-error style="margin-top:0px"  *ngIf= "sendNoteForm.controls['IsUrgent'].dirty && sendNoteForm.hasError('required','IsUrgent')">Urgency level Required
       </mat-error>
         </div>
+        <br>
         <div>
             <p  fxLayoutGap="15px" fxLayout.xs="column">
-                <button mat-raised-button class="loginButton" style="background-color:rgba(3, 161, 170,1);color:white" (click)= "sendNote()">Send Note</button>
-                <button mat-raised-button style="background-color:rgba(3, 161, 170,1);color:white" type="reset">Cancel</button>
+                <button mat-raised-button class="loginButton" color="primary" (click)= "sendNote()">Send Note</button>
+                <button mat-raised-button color="primary" routerLink="/dashboard">Cancel</button>
             </p>
         </div>
 </mat-card>

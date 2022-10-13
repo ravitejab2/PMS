@@ -6,6 +6,6 @@ export class ResponseModel{
 
   public responseMessage:string ="";
 
-  public  dateSet :any ;
+  public  dataSet :any ;
 
 }

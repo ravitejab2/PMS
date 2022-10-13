@@ -31,14 +31,16 @@ export class ViewNotesComponent implements OnInit {
         this.response=data;
         this.notes=this.response.dataSet;
         console.log(this.notes);
-        this.notes.forEach((value)=>{
-          if(value.response==false){
-            this.replyMesssage='Not Received';
-          }
-          else{
-            this.replyMesssage='Responce Received';
-          }});
-        this.dataSource = new MatTableDataSource(this.notes); 
+       
+        // this.notes.forEach((value)=>{
+        //   if(value.response==true){
+        //     this.replyMesssage='Received';
+        //   }
+        //   else{
+        //     this.replyMesssage='Not Received';
+        //   }});
+
+    this.dataSource = new MatTableDataSource(this.notes); 
     console.log(this.dataSource)
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

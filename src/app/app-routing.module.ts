@@ -18,6 +18,19 @@ import { ViewNotesComponent } from './inbox/Notes/view-notes/view-notes.componen
 import { SendnotesComponent } from './inbox/Notes/sendnotes/sendnotes.component';
 import { ReceivedNotesComponent } from './inbox/Notes/received-notes/received-notes.component';
 import { ReplynoteComponent } from './inbox/Notes/replynote/replynote.component';
+import { HomeComponent } from './user/home/home/home.component';
+import { PatientDemoDataComponent } from './user/providers/patient-demo-data/patient-demo-data.component';
+import { PatientVistDataComponent } from './user/providers/patient-vist-data/patient-vist-data.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { UserDashboardComponent } from './user/inbox-dashboard/user-dashboard.component';
+import { PatientListComponent } from './user/providers/patient-list/patient-list.component';
+import { PatientDemographicsComponent } from './user/providers/patient-demographics/patient-demographics.component';
+import { PatientVisitHistoryComponent } from './user/patient/patient-visit-history/patient-visit-history.component';
+import { EmployeeProfileComponent } from './admin/employee-profile/employee-profile.component';
+import { CalenderComponent } from './inbox/scheduler/calender/calender.component';
+import { AddAppointmentComponent } from './inbox/scheduler/add-appointment/add-appointment.component';
+import { EditAppointmentComponent } from './inbox/scheduler/edit-appointment/edit-appointment.component';
+import { AppointmentsComponent } from './inbox/scheduler/appointments/appointments.component';
 
 
 const routes: Routes = [
@@ -29,11 +42,26 @@ const routes: Routes = [
   
   {path: 'dashboard',component: SharedSidenavComponent,
   children: [
+   
+    {
+      path: '',
+      component:HomeComponent
+    },
+
+    {
+      path: 'admin',
+      component:AdminDashboardComponent
+    },
+
     
   {
     path: 'admin/emp-register',
     component: EmployeeRegisterComponent
   }, 
+  {
+    path: 'admin/profile',
+    component:EmployeeProfileComponent
+  },
   {
     path: 'admin/emp-details',
     component: EmployeeDetailsComponent
@@ -42,16 +70,23 @@ const routes: Routes = [
   path: 'admin/patient-details',
   component: PatientDetailsComponent
 },
+
+{
+  path: 'inbox',
+  component:UserDashboardComponent
+},
+
+
 {
   path: 'user-profile',
   component: UserProfileComponent,canActivate:[AuthGuardService]
 },
 {
-  path:'admin/allpatient',
+  path:'patient-demographic',
   component:PatientDetailslistComponent
 },
 {
-  path:'admin/patient-visit',
+  path:'employee/patient-visit/:id',
   component:PatientVisitComponent
 },
 {
@@ -69,7 +104,52 @@ const routes: Routes = [
 {
   path: 'replynotes/:id',
   component: ReplynoteComponent
-}
+},
+{
+  path: 'employees/patient',
+  component:PatientListComponent
+},
+{
+  path: 'employees/patient-visits',
+  component:PatientVistDataComponent
+},
+{
+  path: 'employees/patient/patient-demographics/:id',
+  component:PatientDemographicsComponent
+},
+{
+  path: 'patient/visit-history',
+  component:PatientVisitHistoryComponent
+},
+
+{
+
+  path: 'calender',
+  component: CalenderComponent
+
+},
+
+{
+
+  path: 'add-appointment',
+  component: AddAppointmentComponent
+
+},
+
+{
+
+  path: 'edit-appointment/:id',
+  component: EditAppointmentComponent
+
+},
+
+{
+
+  path: 'appointments',
+  component: AppointmentsComponent
+
+},
+
 ]}
 
 ];

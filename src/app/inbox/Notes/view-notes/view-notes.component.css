@@ -1,0 +1,19 @@
+table {
+  width: 100%;
+  padding-left:2%
+}
+
+td.mat-raised-button{
+  padding:5px,5px,5px,5px
+
+}
+
+.mat-elevation-z8{
+  box-shadow:lightblue
+}
+  
+
+h2{
+   margin-left: 40%;
+   justify-content: center;
+  }

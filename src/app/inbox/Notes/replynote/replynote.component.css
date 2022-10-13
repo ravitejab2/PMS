@@ -1,0 +1,23 @@
+.card{
+    box-shadow: 2px 2px 2px 2px lightblue;
+    width:50%;
+    margin: auto;
+    margin-top: 5%;
+   
+}
+
+.heading{
+    display: inline-flex;
+}
+.cardTitle{
+    margin-top: 4%;
+   
+}
+.mat-form-field{
+margin-top: 7%;    
+}
+  
+.mat-error{
+      font-size: smaller;
+      margin-top:-20px;
+  }

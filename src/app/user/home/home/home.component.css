@@ -1,0 +1,20 @@
+.card{
+  box-shadow: 2px 2px 2px 2px rgb(150, 207, 225);
+  width:60%;
+  height:60%;
+  margin: auto;
+  margin-bottom: 3%;
+  margin-top: 3%;
+ background-color:#4f8bc0;;
+ 
+}
+.card:hover{
+    background-color: lightblue;
+}
+
+
+
+
+.container{
+  background-color:rgb(234, 246, 254);
+}

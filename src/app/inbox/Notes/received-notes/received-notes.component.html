@@ -1,6 +1,11 @@
 <div class="mat-elevation-z8" >
+
+  
+  <h2 ><img src="https://cdn3.iconfinder.com/data/icons/business-people-40/313/Flat_Blue-09-24-512.png"
+    style="width:50px;height:50px; Margin-top:5px;margin-left: -5%;">&nbsp;&nbsp; Received Notes</h2>
+  
     <table  mat-table [dataSource]="dataSource" matSort>
-      
+    
       <ng-container matColumnDef="noteId" hidden>
         <th mat-header-cell *matHeaderCellDef mat-sort-header hidden>Note Id </th>
         <td mat-cell *matCellDef="let row" hidden> {{row.noteId}} </td>
@@ -36,6 +41,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
         <td mat-cell *matCellDef="let row" >
           <button mat-raised-button color="primary" (click)="replyNote(row.noteId)">Reply</button>
+          &nbsp;&nbsp;
           <button mat-raised-button color="warn" (click)="deleteNote(row.noteId)">Delete</button>
           </td>
       </ng-container>

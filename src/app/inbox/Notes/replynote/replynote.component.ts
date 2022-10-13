@@ -22,6 +22,7 @@ export class ReplynoteComponent implements OnInit {
   notedata: any;
 
   constructor(private service:UserService,private route:ActivatedRoute,private notesservice:NotesService,private router:Router,private toaster:ToastrService,private formBuilder:FormBuilder,private noteservice:NotesService) { 
+    
     this.route.paramMap.subscribe((params:ParamMap)=>{
       let id=Number(params.get('id'));
       

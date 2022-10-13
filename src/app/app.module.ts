@@ -29,16 +29,21 @@ import { AuthGuardService } from './authGuard/auth.guard';
 import { ChangePasswordComponent } from './landing-screens/change-password/change-password.component';
 import { ToastrModule } from 'ngx-toastr';
 import { ResponsiveService } from './services/responsive/responsive.service';
-
+import { DatePipe } from '@angular/common';
 import {MatSelectModule} from '@angular/material/select';
 import { AboutUsComponent } from './layouts/about-us/about-us.component';
 import { SharedSidenavModule } from './layouts/shared-sidenav/shared-sidenav.module';
-import { EmployeeDetailsComponent } from './admin/employee-details/employee-details.component';
-import { SharedSidenavComponent } from './layouts/shared-sidenav/shared-sidenav.component';
-import { PatientDetailsComponent } from './admin/patient-details/patient-details.component';
+
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { UserProfileComponent } from './user/user-profile/user-profile.component';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { UserDashboardComponent } from './user/inbox-dashboard/user-dashboard.component';
+import { PatientListComponent } from './user/providers/patient-list/patient-list.component';
+import { PatientDemographicsComponent } from './user/providers/patient-demographics/patient-demographics.component';
+import { PatientVisitHistoryComponent } from './user/patient/patient-visit-history/patient-visit-history.component';
+import { EmployeeProfileComponent } from './admin/employee-profile/employee-profile.component';
+import { MatTableExporterModule } from 'mat-table-exporter';
+
+;
+
 
 
 
@@ -53,6 +58,14 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ChangePasswordComponent,
     SharedLandingToolbarComponent,
     AboutUsComponent,
+
+  
+   
+   
+   
+    
+    
+   
     
   
     
@@ -82,6 +95,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ToastrModule.forRoot(),
     MatSelectModule,
     MatTooltipModule,
+    MatTableExporterModule
+
+    
    
     
     
@@ -89,7 +105,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
   
 
   ],
-  providers: [AuthGuardService,ResponsiveService],
+  providers: [AuthGuardService,ResponsiveService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

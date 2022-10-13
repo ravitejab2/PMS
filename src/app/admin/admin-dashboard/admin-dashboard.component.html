@@ -1,0 +1,46 @@
+<div class="container" fxLayout="column">
+    <a routerLink="/dashboard/admin/patient-details" style="text-decoration: none;">
+        <mat-card  class="card" fxLayout="column" fxLayoutGap="30px" >
+
+            <mat-card-header>
+                <span class="cardTitle" style="color:white;font-size:18px;margin-top:3%;margin-left: 40%;">
+                    <b>Patients</b></span>
+            </mat-card-header>
+            
+            <mat-card-content fxLayout="row" fxLayoutGap="">
+                <div>
+               <img src="https://cdn1.iconfinder.com/data/icons/avatars-150/512/Employee.png"
+                    style="width:200px;height:200px; Margin-top:-35%;margin-left:-10%;"></div>
+                    
+                    <div >
+                    <p style="font-size:50px;color:midnightblue;margin-left: 205%;"><b>{{totalPatientCount}}</b></p>
+                    <br>
+                    <p style="font-size:xx-large;color:White;margin-left:180%">Records</p>
+                </div>
+            </mat-card-content>
+
+        </mat-card>
+    </a>
+
+    <a routerLink="/dashboard/admin/emp-details" style="text-decoration: none;">
+        <mat-card  class="card" fxLayout="column" fxLayoutGap="30px" >
+
+            <mat-card-header>
+                <span class="cardTitle" style="color:white;font-size:18px;margin-top:3%;margin-left: 40%;"><b>Employees</b></span>
+            </mat-card-header>
+            
+            <mat-card-content fxLayout="row" fxLayoutGap="">
+                <div>
+               <img src="https://cdn1.iconfinder.com/data/icons/avatars-150/512/Doctor.png"
+                    style="width:200px;height:200px; Margin-top:-35%;margin-left:-10%;"></div>
+                    
+                    <div >
+                    <p style="font-size:50px;color:midnightblue;margin-left: 205%;"><b>{{totalEmployeeCount}}</b></p>
+                    <br>
+                    <p style="font-size:xx-large;color:White;margin-left:180%">Records</p>
+                </div>
+            </mat-card-content>
+
+        </mat-card>
+    </a>
+</div>

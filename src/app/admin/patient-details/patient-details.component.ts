@@ -34,6 +34,7 @@ export class PatientDetailsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+
   constructor(private router:Router,private service:PatientService,private toasts:ToastrService) {
     
    }
@@ -49,7 +50,7 @@ export class PatientDetailsComponent implements OnInit {
     this.service.getAllPatient().subscribe(data=>{
       console.log(data);
       this.employees=data;
-
+   
       this.employees.forEach((value)=>{
         if(value.lockout==null){
           value.status='Active';

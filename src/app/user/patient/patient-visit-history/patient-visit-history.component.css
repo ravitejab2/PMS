@@ -1,0 +1,21 @@
+table {
+    width: 100%;
+  }
+
+td.mat-raised-button{
+    padding:5px,5px,5px,5px
+  
+}
+.mat-form-field{
+    margin-left:10px
+}
+.mat-elevation-z8{
+    box-shadow:lightblue
+}
+.Tableheader{
+    display: flex;
+}
+.mat-raised-button{
+    height:4%;
+    margin-top:3%
+}

@@ -1,0 +1,20 @@
+<div class="main">
+  <div class="navigations">
+    <div class="buttons" >
+      <div><button (click)="navigatePrevious($event)">Previous</button></div>
+      <div><button (click)="navigateToday($event)">Today</button></div>
+      <div><button (click)="navigateNext($event)">Next</button></div>
+    </div>
+    <div class="buttons" >
+      <div><button (click)="displayMonth()">Month</button></div>
+      <div><button (click)="displayWorkWeek()">WorkWeek</button></div>
+      <div><button (click)="displayDay()">Day</button></div>
+    </div>
+  </div> 
+  
+
+<div>
+    <daypilot-calendar #calendar [config]="calendarConfig" [events]="events" ></daypilot-calendar>
+    <daypilot-month [config]="configMonth" [events]="events" #month></daypilot-month>
+</div>
+

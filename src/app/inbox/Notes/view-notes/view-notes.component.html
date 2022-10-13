@@ -1,4 +1,7 @@
 <div class="mat-elevation-z8" >
+  <h2 ><img src="https://cdn3.iconfinder.com/data/icons/business-people-40/313/Flat_Blue-09-24-512.png"
+    style="width:50px;height:50px; Margin-top:5px;margin-left: -5%;">&nbsp;&nbsp; Sent Notes</h2>
+   
     <table  mat-table [dataSource]="dataSource" matSort>
       
       <ng-container matColumnDef="noteId" hidden>
@@ -12,17 +15,17 @@
   
      
       <ng-container matColumnDef="receiverName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Sender Name </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Receiver Name </th>
         <td mat-cell *matCellDef="let row"> {{row.receiverName}}</td>
       </ng-container>
       
       <ng-container matColumnDef="receiverDesignation">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Sender Designation</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Receiver Designation</th>
         <td mat-cell *matCellDef="let row"> {{row.receiverDesignation}}</td>
       </ng-container>
   
       <ng-container matColumnDef="message">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Message Received</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Message Sent</th>
         <td mat-cell *matCellDef="let row"> {{row.message}}</td>
       </ng-container>
   
@@ -32,8 +35,13 @@
       <ng-container matColumnDef="response">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Response</th>
        
-            <td mat-cell *matCellDef="let row" > {{replyMesssage}}</td>
-           
+        <td mat-cell *matCellDef="let row" >
+
+          <span *ngIf="row.response == true">Received Response</span>
+
+          <span *ngIf="row.response == false">Not Received</span>
+
+        </td>           
           
           
       </ng-container>

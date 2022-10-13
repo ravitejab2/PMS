@@ -21,9 +21,9 @@
           <p class="height">
               <mat-form-field appearance="outline">
                   <mat-label><b>Height</b></mat-label>
-                  <input matInput type="text" formControlName="Height" matInput placeholder="In cms" required>                 
+                  <input matInput type="text" formControlName="height" matInput placeholder="In cms" required>                 
               </mat-form-field>
-              <mat-error *ngIf= "vitaldetails.controls['Height'].dirty && vitaldetails.hasError('required','Height')">
+              <mat-error *ngIf= "vitaldetails.controls['height'].dirty && vitaldetails.hasError('required','height')">
                 Please enter your height
               </mat-error>
                  
@@ -47,18 +47,18 @@
           <p class="bloodpressure">
             <mat-form-field  appearance="outline">
                 <mat-label><b>Blood Pressure</b></mat-label>
-                <input matInput type="text" formControlName="BloodPressure" matInput placeholder="systolic / diastolic in mm Hg" required>               
+                <input matInput type="text" formControlName="blood_Pressure" matInput placeholder="systolic / diastolic in mm Hg" required>               
             </mat-form-field>
-            <mat-error *ngIf= "vitaldetails.controls['BloodPressure'].dirty && vitaldetails.hasError('required','BloodPressure')">Please enter your blood pressure rate
+            <mat-error *ngIf= "vitaldetails.controls['blood_Pressure'].dirty && vitaldetails.hasError('required','blood_Pressure')">Please enter your blood pressure rate
             </mat-error>
         </p>
 
         <p class="bloodtemp">
             <mat-form-field appearance="outline">
                 <mat-label><b>Blood Temperature</b></mat-label>
-                <input matInput type="text" formControlName="BloodTemp" matInput placeholder="in Fahrenheit" required>               
+                <input matInput type="text" formControlName="Body_Temperature" matInput placeholder="in Fahrenheit" required>               
             </mat-form-field>
-            <mat-error *ngIf= "vitaldetails.controls['BloodTemp'].dirty && vitaldetails.hasError('required','BloodTemp')">Please enter your blood temperature
+            <mat-error *ngIf= "vitaldetails.controls['Body_Temperature'].dirty && vitaldetails.hasError('required','Body_Temperature')">Please enter your blood temperature
             </mat-error>
         </p>
         
@@ -73,9 +73,9 @@
       <p class="resprate">
         <mat-form-field appearance="outline">
             <mat-label><b>Respiration Rate</b></mat-label>
-            <input matInput type="number" formControlName="RespirationRate" matInput placeholder="18" required>               
+            <input matInput type="text" formControlName="Respiration_Rate" matInput placeholder="18" required>               
         </mat-form-field>
-        <mat-error *ngIf= "vitaldetails.controls['RespirationRate'].dirty && vitaldetails.hasError('required','RespirationRate')">Please enter Respiration rate
+        <mat-error *ngIf= "vitaldetails.controls['Respiration_Rate'].dirty && vitaldetails.hasError('required','Respiration_Rate')">Please enter Respiration rate
         </mat-error>
     </p>
   
@@ -90,7 +90,7 @@
           <div>
             <!-- <button mat-button matStepperNext>Next</button> -->
             <button mat-raised-button matStepperNext color="primary" >Next </button>&nbsp;&nbsp;
-            <button mat-raised-button matStepperPrevious color="primary" >Save</button>
+            <button mat-raised-button matStepperPrevious color="primary" (click)="postVitals()">Save</button>
         
       </div>
   
@@ -98,8 +98,193 @@
   
       </mat-card>
     </mat-step>
-
-        <mat-step [stepControl]="diagnosisdetails">
+    <mat-step [stepControl]="diagnosisdetails">
+      <mat-card [formGroup]= "diagnosisdetails" class="card" fxLayout="column" fxLayoutAlign="center center">
+        <ng-template matStepLabel>Diagnosis/ Procedures/ Medication</ng-template>
+        <mat-card-header>
+          <div class="heading">
+            <img src="../../../../assets/CTLogo/CardLogo.png" style="height:40px">
+            <span class="cardTitle" style="font-size:18px" ><b>Diagnosis/ Procedures/ Medication</b></span>
+          </div>
+        </mat-card-header>
+        <br>
+        <mat-accordion class="example-headers-align">
+          <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+              <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Diagnosis
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Enter the Diagnosis Details
+                    <mat-icon>medical_services</mat-icon>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p class="code">
+                  <mat-form-field appearance="outline">
+                      <mat-label>Diagnosis Code</mat-label>
+                      <mat-select (selectionChange)="onDropdownChange($event)" formControlName="diagnosis_Code">
+                        <mat-option *ngFor="let item of result" value="{{item.diagnosis_Code}}">
+                          {{item.diagnosis_Code}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  <mat-error *ngIf= "diagnosisdetails.controls['diagnosis_Code'].dirty && diagnosisdetails.hasError('required','diagnosis_Code')">Please enter Diagnosis Code
+                </mat-error>
+            </p>
+            <p class="desc">
+              <mat-form-field appearance="outline">
+                <mat-label><b>Diagnosis Description</b></mat-label>
+                <input matInput type="text" formControlName="diagnosis_Description" matInput placeholder="Enter the description" required>
+              </mat-form-field>
+              <mat-error *ngIf= "diagnosisdetails.controls['diagnosis_Description'].dirty && diagnosisdetails.hasError('required','diagnosis_Description')">Please enter Diagnosis Description
+            </mat-error>
+        </p>
+        <p class="depr">
+          <mat-label><b>Is_Depricated:</b></mat-label>&nbsp;
+          <mat-radio-group formControlName="diagnosis_Is_Depricated" aria-label="Select an option">
+              <mat-radio-button  value="true" [checked]="depricated">Yes</mat-radio-button>&nbsp;
+              <mat-radio-button value="false" [checked]="!depricated">No</mat-radio-button>
+            </mat-radio-group>
+          <mat-error *ngIf= "diagnosisdetails.controls['diagnosis_Is_Depricated'].dirty && diagnosisdetails.hasError('required','diagnosis_Is_Depricated')">Please select one option
+        </mat-error>
+    </p>
+    <mat-action-row>
+      <button mat-raised-button color="primary" (click)="nextStep()">Next</button>
+      <!-- <button mat-raised-button color="primary" (click)="registerDiagnosis()">Save</button> -->
+    </mat-action-row>
+  </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Procedures
+        </mat-panel-title>
+        <mat-panel-description>
+          Enter the Procedure Details
+          <mat-icon>medical_information</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p class="proccode">
+          <mat-form-field appearance="outline">
+              <mat-label>Procedure Code</mat-label>
+              <mat-select (selectionChange)="onProcedureCodeChange($event)" formControlName="procedure_Code">
+                <mat-option *ngFor="let item of proc_result" value="{{item.procedure_Code}}">
+                  {{item.procedure_Code}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+      <mat-error *ngIf= "diagnosisdetails.controls['procedure_Code'].dirty && diagnosisdetails.hasError('required','procedure_Code')">Please enter Procedure code
+    </mat-error>
+</p>
+<p class="procdesc">
+      <mat-form-field appearance="outline">
+        <mat-label>Procedure Description</mat-label>
+        <input matInput type="text" formControlName="procedure_Description" matInput placeholder="Enter the code" required>
+      </mat-form-field>
+      <mat-error *ngIf= "diagnosisdetails.controls['procedure_Description'].dirty && diagnosisdetails.hasError('required','procedure_Description')">Please enter Procedure description
+    </mat-error>
+</p>
+<p class="deprproc">
+  <mat-label><b>Is_Depricated:</b></mat-label>&nbsp;
+  <mat-radio-group formControlName="procedure_Is_Depricated" aria-label="Select an option">
+      <mat-radio-button [checked]="proc_depricated" value="true">Yes</mat-radio-button>&nbsp;
+      <mat-radio-button  [checked]="!proc_depricated" value="false">No</mat-radio-button>
+    </mat-radio-group>
+  <mat-error *ngIf= "diagnosisdetails.controls['procedure_Is_Depricated'].dirty && diagnosisdetails.hasError('required','procedure_Is_Depricated')">Please enter Respiration rate
+</mat-error>
+</p>
+      <mat-action-row>
+        <button mat-raised-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-raised-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+         Medication
+        </mat-panel-title>
+        <mat-panel-description>
+          Enter the Medication Details
+          <mat-icon>vaccines</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p class="id">
+          <mat-form-field appearance="outline">
+              <mat-label>Drug Id</mat-label>
+              <mat-select (selectionChange)="onChange($event)" formControlName="drugID">
+                <mat-option *ngFor="let item of res" value="{{item.drugID}}">
+                  {{item.drugID}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+      <mat-error *ngIf= "diagnosisdetails.controls['drugID'].dirty && diagnosisdetails.hasError('required','drugID')">Please enter Drug Id
+    </mat-error>
+</p>
+<p class="name">
+  <mat-form-field appearance="outline">
+      <mat-label>Drug Name</mat-label>
+      <mat-select (selectionChange)="onNameChange($event)" formControlName="drug_Name">
+        <mat-option *ngFor="let item of output1" value="{{item.drug_Name}}">
+          {{item.drug_Name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+      <mat-error *ngIf= "diagnosisdetails.controls['drug_Name'].dirty && diagnosisdetails.hasError('required','drug_Name')">Please enter Drug Name
+    </mat-error>
+</p>
+<p class="genname">
+  <mat-form-field appearance="outline">
+      <mat-label>Drug Generic Name</mat-label>
+      <mat-select (selectionChange)="drug_GenericName" formControlName="drug_GenericName">
+        <mat-option *ngFor="let item of output1" value="{{item.drug_Generic_Name}}">
+          {{item.drug_Generic_Name}}
+          </mat-option>
+      </mat-select>
+    </mat-form-field>
+      <mat-error *ngIf= "diagnosisdetails.controls['drug_GenericName'].dirty && diagnosisdetails.hasError('required','drug_GenericName')">Please enter Drug Generic Name
+    </mat-error>
+</p>
+<p class="brandname">
+  <mat-form-field appearance="outline">
+      <mat-label>Drug Strength</mat-label>
+      <mat-select (selectionChange)="drug_Strength" formControlName="drug_Strength">
+        <mat-option *ngFor="let item of output1" value="{{item.drug_Strength}}">
+          {{item.drug_Strength}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+      <mat-error *ngIf= "diagnosisdetails.controls['drug_Strength'].dirty && diagnosisdetails.hasError('required','drug_Strength')">Please enter Drug strength
+      </mat-error>
+</p>
+<p class="form">
+  <mat-form-field appearance="outline">
+      <mat-label>Drug Form</mat-label>
+      <mat-select (selectionChange)="drug_Form" formControlName="drug_Form">
+        <mat-option *ngFor="let item of output1" value="{{item.drug_Form}}">
+          {{item.drug_Form}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+      <mat-error *ngIf= "diagnosisdetails.controls['drug_Form'].dirty && diagnosisdetails.hasError('required','drug_Form')">Please enter Drug Form
+    </mat-error>
+</p>
+<p class="drugdesc">
+      <mat-form-field appearance="outline">
+        <mat-label>Drug Description</mat-label>
+        <input matInput type="text" formControlName="description" matInput placeholder="Enter the code" required>
+      </mat-form-field>
+      <mat-error *ngIf= "diagnosisdetails.controls['description'].dirty && diagnosisdetails.hasError('required','description')">Please enter Respiration rate
+    </mat-error>
+</p>
+      <mat-action-row>
+        <button mat-raised-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-raised-button color="primary" (click)="nextStep()">End</button>
+        <button mat-raised-button matStepperPrevious color="primary" (click)="postDiagnosis()">Save</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+        </mat-accordion>
+    </mat-card>
+  </mat-step>
+        <!-- <mat-step [stepControl]="diagnosisdetails">
             <mat-card [formGroup]= "diagnosisdetails" class="card" fxLayout="column" fxLayoutAlign="center center">
               <ng-template matStepLabel>Diagnosis/ Procedures/ Medication</ng-template>
       
@@ -309,6 +494,6 @@
                 
               </mat-accordion>   
           </mat-card>
-        </mat-step>
+        </mat-step> -->
     
 </mat-stepper>  

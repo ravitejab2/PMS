@@ -1,0 +1,76 @@
+<div class="container">
+    <mat-card fxLayout="column" fxLayoutGap="5%" >
+        <!-- <mat-card-title fxLayoutAlign="center center">
+            <img src="../../../assets/CTLogo/CardLogo.png" style="height:50px">
+            <span class="cardTitle" style="font-size:18px" ><b>My Profile</b></span>
+        </mat-card-title> -->
+       
+        <div fxLayout="row">
+            <img style="height:100px;width:70px" mat-card-avatar
+                src="https://cdn3.iconfinder.com/data/icons/avatars-flat/33/man_5-1024.png"
+                alt="Shiba Inu">
+            <mat-card-header> 
+                <mat-card-title style="font-size:15px;color:#4f8bc0">{{user.name}}</mat-card-title>
+
+                <mat-card-subtitle></mat-card-subtitle>
+            </mat-card-header>
+        
+            <mat-card-content style="margin-top:4%;margin-left:-6%">                  
+                <form fxLayout="row" fxLayout.xs="column" [formGroup]="userProfile">                   
+                   
+                    <div fxLayout="column"  fxLayoutAlign="">
+                        <div><b>Email</b></div>
+                        <mat-divider></mat-divider>
+                        <br>
+                        <input type="text" disabled placeholder="No Data" id="email" value="{{user.email}}">
+                    </div>
+
+                    <div fxLayout="column" >
+                        <div><b>Contact</b></div>
+                        <mat-divider></mat-divider>
+                        <br>
+                        <input type="text" disabled placeholder="No Data" id="email" value="{{user.contact}}">
+                    </div>
+
+                    <div fxLayout="column" >
+                        <div><b>Gender</b></div>
+                        <mat-divider></mat-divider>
+                        <br>
+                        <input type="text" disabled placeholder="No Data" id="name" value="{{user.gender}}">
+                    </div>
+
+                    <div fxLayout="column" >
+                        <div><b>Age</b></div>
+                        <mat-divider></mat-divider>
+                        <br>
+                        <input type="text" disabled placeholder="No Data" id="dateOfBirth" value="{{user.age}}">
+                    </div>
+
+                    <div fxLayout="column">
+                        <div><b>Address</b></div>
+                        <mat-divider></mat-divider>
+                        <br>
+                        <input type="text" disabled placeholder="No Data" id="role" value="{{user.address}}">
+                    </div>  
+                    <div fxLayout="column">
+                        <div><b>&nbsp;</b></div>
+                        <mat-divider></mat-divider>
+                        <br>
+                        <button mat-raised-button color="primary" routerLink="/dashboard/patient-demographic" style="margin-top: -29%;margin-left:-19px">Edit</button>
+                    </div>  
+                  
+                  
+                    
+                   
+                              
+            </form>
+               
+        </mat-card-content>
+    </div>
+    
+
+    
+        
+
+    </mat-card>
+</div>

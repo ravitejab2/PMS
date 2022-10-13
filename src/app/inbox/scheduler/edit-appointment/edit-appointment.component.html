@@ -1,0 +1,74 @@
+<mat-card [formGroup]= "appointmentForm" class="card" fxLayout="column" fxLayoutAlign="center center">
+   
+    <mat-card-header>
+            
+        <div class="heading">
+          
+          <img src="../../../../assets/CTLogo/CardLogo.png" style="height:40px">
+          
+          <span class="cardTitle" style="font-size:18px" ><b>Edit Appointment</b></span>
+        </div>   
+      
+      </mat-card-header>
+
+      <div fxLayout="row" fxLayoutGap="50px" fxLayout.xs="column">
+    <mat-form-field appearance="outline">
+        <mat-label><b>Physician Name</b></mat-label>
+        <input matInput type="text" value ="{{physicianName}}"   required>  
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label><b>Patient Name</b></mat-label>
+        <input matInput type="text" value= "{{patientName}}"  required>  
+      </mat-form-field>
+      </div>
+      
+     
+      <div fxLayout="row" fxLayoutGap="50px" fxLayout.xs="column">
+        <p class="name">
+            <mat-form-field appearance="outline">
+                <mat-label><b>Meeting Title</b></mat-label>
+                <input matInput type="text" formControlName="meetingTitle"  required>                 
+            </mat-form-field>          
+            
+        </p>     
+      
+        <p class="name">
+            <mat-form-field appearance="outline">
+                <mat-label>Appointment Date</mat-label>
+                <input matInput type="date" formControlName="appointmentDate" (ngModelChange)="dateChange($event)">            
+               
+              </mat-form-field>                    
+        </p>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="50px" fxLayout.xs="column">
+      <mat-form-field appearance="outline">
+        <mat-label><b>Available Slots</b></mat-label>
+        <mat-select  formControlName="availableSlots" >
+          <mat-option *ngFor= "let slot of slots" value="{{slot.slotId}}">
+            {{slot.slotTiming}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      
+        <p class="name">
+            <mat-form-field appearance="outline">
+                <mat-label><b>Description</b></mat-label>
+                <input matInput type="text" formControlName="description"   required>                 
+            </mat-form-field>          
+            
+        </p>
+      </div>
+    
+      <div>
+        <p  fxLayoutGap="15px" fxLayout.xs="column">
+            <button mat-raised-button class="loginButton" color="primary" (click)= "bookAppointment()">Update Appointment</button>
+            <button mat-raised-button color="primary" type="reset" >Cancel</button>
+        </p>
+    </div>
+      
+       
+</mat-card>

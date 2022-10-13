@@ -44,11 +44,13 @@ export class EmployeeDetailsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+ 
   constructor(private router:Router,private service:EmployeesService,private toasts:ToastrService) {
     
    }
   ngOnInit(): void {
     this.fetchAllEmployees();
+    
    
     
   }

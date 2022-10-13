@@ -1,0 +1,54 @@
+<div class="mat-elevation-z8" >
+    <table  mat-table [dataSource]="dataSource" matSort>
+      
+      <ng-container matColumnDef="appointmentId" hidden>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header hidden>Appointment Id</th>
+        <td mat-cell *matCellDef="let row" hidden> {{row.appointmentId}} </td>
+      </ng-container>
+      <ng-container matColumnDef="appointmentdate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Appointment Date </th>
+        <td mat-cell *matCellDef="let row"> {{row.appointmentdate | date:'shortDate'}} </td>
+      </ng-container>
+  
+     
+      <ng-container matColumnDef="appointmentStartdate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Time </th>
+        <td mat-cell *matCellDef="let row"> {{row.appointmentStartdate | date:'shortTime'}}</td>
+      </ng-container>
+      
+      <ng-container matColumnDef="appointmentEnddate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>End Time</th>
+        <td mat-cell *matCellDef="let row"> {{row.appointmentEnddate | date:'shortTime'}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="meetingtitle">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Meeting Title</th>
+        <td mat-cell *matCellDef="let row"> {{row.meetingtitle}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let row"> {{row.status}}</td>
+      </ng-container>
+  
+      
+      <ng-container matColumnDef="action" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header >Action</th>
+        <td mat-cell *matCellDef="let row" >
+            <p *ngIf="row.status=='Created'">
+                <button mat-raised-button *ngIf="userRole!='user'" color="primary" (click)="acceptAppointment(row.appointmentId)">Accept</button>
+          <button mat-raised-button *ngIf="userRole !='user'" color="warn" (click)="declineAppointment(row.appointmentId)">Decline</button>
+          
+            </p>
+          </td>
+      </ng-container>
+  
+     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+      <!-- Row shown when there is no matching data. -->
+     
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>

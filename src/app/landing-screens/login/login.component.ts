@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
       if (data.responseCode == 1) {
        this.response=data; 
        console.log(data);   
+       console.log('Hello',this.response.dataSet.roles[0]);
        console.log(this.response.dataSet.token) 
        localStorage.setItem('userToken',this.response.dataSet.token)
        localStorage.setItem('userID',this.response.dataSet.id); 
@@ -58,7 +59,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/dashboard']);
         if(this.response.dataSet.roles[0]=="physician")
         this.router.navigate(['/dashboard']);
-        if(this.response.dataSet.roles[0]=="Admin")
+        if(this.response.dataSet.roles[0]=="admin")
         this.router.navigate(['/dashboard']);
         }
       

@@ -21,6 +21,8 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "@daypilot/daypilot-lite-angular": "^3.10.1",
+    "mat-table-exporter": "^10.2.4",
     "ngx-toastr": "^15.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

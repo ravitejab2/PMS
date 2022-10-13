@@ -1,0 +1,19 @@
+.mat-card-header{
+    display:flex;
+    
+}
+.container{
+    margin-top:5%
+}
+.mat-card{
+    box-shadow: 2px 2px 2px 2px lightblue;
+    z-index: 2;
+    position:relative
+}
+.mat-expansion-panel{
+    box-shadow: 2px 2px 2px 2px rgb(150, 207, 225);
+}
+
+
+input{
+border:none;}

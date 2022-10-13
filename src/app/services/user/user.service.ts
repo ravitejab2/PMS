@@ -2,17 +2,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginComponent } from 'src/app/landing-screens/login/login.component';
+import { environment } from 'src/environments/environment.prod';
 import { ResponseModel } from '../../models/responseModel';
 
-export interface User {
-  id: number;
-  name: string;
-  email: string;
-  role:number;
-  title: string;
-  contact:number;
- dateOfBirth:Date;
-}
+
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +17,7 @@ export class UserService {
     
    }
   readonly BaseURI = 'https://localhost:44362/api/account';
+  patientControllerApi=environment.patientApiUrl;
 
  
 
@@ -37,6 +31,8 @@ export class UserService {
     localStorage.removeItem('userID');
     localStorage.removeItem('userName');
     localStorage.removeItem('userRole');
+    localStorage.removeItem('email');
+    localStorage.removeItem('EmployeeCount');
   
   }
   forgotpassword(body:any) {
@@ -59,7 +55,7 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer '+token
     })
-    return this.http.get<ResponseModel>(this.BaseURI +'/profile-user/'+id,{headers:headers});
+    return this.http.get<ResponseModel>(this.patientControllerApi +'/profile-user/'+id,{headers:headers});
   }
 
 
@@ -77,7 +73,9 @@ export class UserService {
     
     return this.http.post<ResponseModel>(this.BaseURI+'/change-password/'+id ,body,{headers:headers})
   }
+  
   gethospitalUsers():Observable<any>{
+    
     let token=localStorage.getItem("userToken");      
     
      
@@ -86,5 +84,64 @@ export class UserService {
     })
     
     return this.http.get<ResponseModel>(this.BaseURI + '/GetEmployees',{headers:headers});
+  }
+
+
+//Scheduler change
+
+  getallPhysicians():Observable<any>{
+
+    let token=localStorage.getItem("userToken");      
+
+   
+
+     
+
+    const headers = new HttpHeaders({
+
+      'Authorization': 'Bearer '+token
+
+    })
+
+   
+
+    return this.http.get<ResponseModel>(this.BaseURI + '/GetAllPhysicians',{headers:headers});
+
+  }
+
+
+
+  getAllPatients():Observable<any>{
+
+    let token=localStorage.getItem("userToken");      
+
+   
+
+     
+
+    const headers = new HttpHeaders({
+
+      'Authorization': 'Bearer '+token
+
+    })
+
+   
+
+    return this.http.get<ResponseModel>(this.BaseURI + '/GetPatient',{headers:headers});
+
+  }
+
+  getUserDetails(id:number):Observable<any>{
+
+    let token=localStorage.getItem("userToken");
+
+    const headers = new HttpHeaders({
+
+      'Authorization': 'Bearer '+token
+
+    })
+
+    return this.http.get<ResponseModel>(this.BaseURI +'/users/'+id,{headers:headers});
+
   }
 }

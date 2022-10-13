@@ -142,6 +142,15 @@ export class PatientService {
   
   }
 
+  getAllergyById(id: number): Observable<any> {
+
+    let token = localStorage.getItem("userToken");
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + token
+    })
+    return this.http.get<ResponseModel>(this.allergyApi + '/Allergies/' + id, { headers: headers });
+  }
+
 
 
 

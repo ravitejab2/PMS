@@ -57,13 +57,14 @@ export class PatientDetailslistComponent implements OnInit {
   emergency!:EmergencyDetails;
   response2!:any;
 
- 
+
   response3: any;
   result!: allergyModel[];
   res!: any;
   allallergytype!: string[];
   allallergyname!: string[];
   output!: allergyModel[];
+  getAllergy!:allergyModel;
   patientAllergyId!:number;
   allergyId!: string;
   allergy_Name!: string;
@@ -118,7 +119,7 @@ export class PatientDetailslistComponent implements OnInit {
 
   }
 
- 
+
 
   // CalculateAge(): void {
   //   if (this.birthdate) {
@@ -146,7 +147,7 @@ export class PatientDetailslistComponent implements OnInit {
 
   patientDemographicForm() {
     this.patientdetails = this.formBuilder.group({
-      
+
       Title: new FormControl('', [Validators.required]),
       PatientId: new FormControl(parseInt(this.userId)),
     //  CreatedOn:new FormControl(''),
@@ -183,7 +184,7 @@ export class PatientDetailslistComponent implements OnInit {
   }
 
   patientAllergyForm() {
-    
+
     this.allergydetails=this.formBuilder.group({
       Allergy_Type: new FormControl('',[Validators.required]),
       Allergy_Name: new FormControl('',[Validators.required]),
@@ -200,51 +201,51 @@ export class PatientDetailslistComponent implements OnInit {
 
 
   registerDemographicDetails() {
-    if (this.patientdetails.valid) 
+    if (this.patientdetails.valid)
     {
       console.log(this.patientdetails.value)
             console.log(this.user.createdOn);
-            
+
             if(this.user.createdOn!=null)
               {
                 this.service.updateDemographics(this.userId,this.patientdetails.value).subscribe((data: ResponseModel)=>{
-                  if (data.responseCode == 1) 
+                  if (data.responseCode == 1)
                   {
                     this.toaster.success(data.responseMessage)
                   }
-                  else 
+                  else
                   {
                     this.toaster.error(data.responseMessage)
                   }
 
 
 
-                })          
-                        
-                       
+                })
+
+
               }
 
       else{
 
          this.service.postDemographics(this.patientdetails.value).subscribe((data: ResponseModel) => {
-        if (data.responseCode == 1) 
+        if (data.responseCode == 1)
         {
           this.toaster.success(data.responseMessage)
         }
-        else 
+        else
         {
           this.toaster.error(data.responseMessage)
         }
 
       })
-   
-   
+
+
     }
-  
+
   }
 
-    
-    
+
+
     else {
       this.validateAllFromFields(this.patientdetails);
       console.log(this.patientdetails.value);
@@ -253,9 +254,9 @@ export class PatientDetailslistComponent implements OnInit {
 
 
   loadUserProfile() {
-    
+
     this.service.getUserById(this.userId).subscribe((data: ResponseModel) => {
-     
+
       console.log(data);
       if (data.responseCode == 1) {
         this.response = data;
@@ -293,7 +294,34 @@ export class PatientDetailslistComponent implements OnInit {
 
       }
       });
-      
+
+      this.service.getAllergyById(this.userId).subscribe((data:ResponseModel)=>{
+        console.log('Allergy',data);
+        if (data.responseCode == 1) {
+             this.getAllergy=data.dataSet;
+             this.output=data.dataSet;
+             console.log(this.getAllergy)
+
+            //   this.allergydetails.patchValue({
+            //  Allergy_Type:this.getAllergy.allergy_Type,
+            //   Allergy_Name: this.getAllergy.allergy_Name,
+              // AllergyId: this.getAllergy.allergyId,
+              // Allergy_Desc: this.getAllergy.allergy_Description,
+            //  Allergy_Clinical: this.getAllergy[0].,
+            //  Is_Fatal: this.getAllergy[0].
+
+           //})
+        //   this.onDropdownChange(this.getAllergy.allergy_Type);
+          //  this.allergydetails.patchValue({
+          //   //Allergy_Type:this.getAllergy.allergy_Type,
+          //   Allergy_Name: this.getAllergy.allergy_Name,
+          // })
+             //this.onChange(this.getAllergy.allergy_Name);
+
+        }
+
+      })
+
   }
 
   loadDemographicFormData() {
@@ -335,7 +363,7 @@ export class PatientDetailslistComponent implements OnInit {
 
 
   }
-  
+
   loadEmergencyFormData() {
 
     console.log('Load From', this.user.firstName);
@@ -361,7 +389,7 @@ export class PatientDetailslistComponent implements OnInit {
       control6?.setValue(this.emergency.isAllowed);
       control7?.setValue(this.emergency.address);
       control8?.setValue(this.emergency.createdOn);
-      
+
     }
 
 
@@ -376,23 +404,23 @@ export class PatientDetailslistComponent implements OnInit {
     {
       console.log(this.emergencydetails.value)
 
-      if (this.emergency.emergencyContactId > 0) 
+      if (this.emergency.emergencyContactId > 0)
         {
                 this.service.updateEmergency(this.userId,this.emergencydetails.value).subscribe((data: ResponseModel)=>{
-                  if (data.responseCode == 1) 
+                  if (data.responseCode == 1)
                   {
                     this.toaster.success(data.responseMessage)
                   }
-                  else 
+                  else
                   {
                     this.toaster.error(data.responseMessage)
                   }
 
 
 
-                })          
-                        
-                       
+                })
+
+
               }
 
 
@@ -407,10 +435,10 @@ export class PatientDetailslistComponent implements OnInit {
         }
 
       })}
-   
-   
-   
-   
+
+
+
+
     }
 
     else {
@@ -442,7 +470,7 @@ export class PatientDetailslistComponent implements OnInit {
 
   getMasterAllergy(){
     this.service.allAllergies().subscribe((data:ResponseModel)=>
-    { 
+    {
       if(data.responseCode==1)
       {
       this.response=data;
@@ -455,9 +483,9 @@ export class PatientDetailslistComponent implements OnInit {
       }
     })
     }
-   
-   
-   
+
+
+
     registerAllergyDetails() {
       console.log(this.allergydetails);
       if (this.allergydetails.valid) {
@@ -474,7 +502,7 @@ export class PatientDetailslistComponent implements OnInit {
          console.log(this.allergyobj);
         console.log(this.allergydetails.value)
         this.service.postAllergyDetails(this.allergyobj).subscribe((data: ResponseModel) => {
-          if (data.responseCode == 1) {  
+          if (data.responseCode == 1) {
             this.toaster.success(data.responseMessage)
           }
           else {
@@ -485,7 +513,7 @@ export class PatientDetailslistComponent implements OnInit {
     }
 
 
-    onChange(event:any) 
+    onChange(event:any)
     {
       console.log(event);
       this.allergy_Name=event;
@@ -496,7 +524,7 @@ export class PatientDetailslistComponent implements OnInit {
      console.log(this.allergyId,this.allergy_Desc, this.allergy_Clinical)
       // this.persons =  this.personService.getPersons().find(x => x.id == this.personId);
     }
-  onDropdownChange(event:any) 
+  onDropdownChange(event:any)
     {
       console.log(event);
       this.allergy_Type=event;

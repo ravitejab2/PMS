@@ -45,7 +45,12 @@
                         <br>
                         <input type="text" disabled placeholder="No Data" id="dateOfBirth" value="{{user.age}}">
                     </div>
-
+                    <div fxLayout="column">
+                        <div><b>&nbsp;</b></div>
+                        <mat-divider></mat-divider>
+                        <br>
+                        <button mat-raised-button color="primary" (click)="editprofile(userId)" style="margin-top: -29%;margin-left:-19px">Edit</button>
+                    </div>
                     <div fxLayout="column">
                         <div><b>&nbsp;</b></div>
                         <mat-divider></mat-divider>

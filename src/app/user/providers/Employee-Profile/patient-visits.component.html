@@ -1,0 +1,166 @@
+<h2>Vital Details</h2>
+<div class="Tableheader" fxLayoutGap="70%">
+    <mat-form-field appearance="standard">
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Jhon" #input> 
+  
+    </mat-form-field>
+    <span class="button">
+      <button mat-raised-button class="buttons" color="primary" (click)="exporter.exportTable('csv',{fileName:'VitalRecord'})">Export</button>
+      &nbsp;<button mat-raised-button color="primary" routerLink="/dashboard/employees/patient">Back</button>
+      </span>
+  </div>
+  <br>
+    <div class="mat-elevation-z8">
+      <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter" matSort>
+    
+        
+        <ng-container matColumnDef="visitId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Visit Id </th>
+          <td mat-cell *matCellDef="let row"> {{row.visitId}} </td>
+        </ng-container>
+    
+       
+        <ng-container matColumnDef="patient_Id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Patient Id </th>
+          <td mat-cell *matCellDef="let row"> {{row.patient_Id}}</td>
+        </ng-container>
+        
+        
+        <ng-container matColumnDef="visit_Date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Visit Date</th>
+          <td mat-cell *matCellDef="let row"> {{row.visit_Date | date:'shortDate'}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="height">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Height</th>
+          <td mat-cell *matCellDef="let row"> {{row.height}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Weight</th>
+          <td mat-cell *matCellDef="let row"> {{row.weight}}</td>
+        </ng-container>
+        <ng-container matColumnDef="blood_Pressure">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Blood Pressure </th>
+          <td mat-cell *matCellDef="let row"> {{row.blood_Pressure}}</td>
+        </ng-container>
+        <ng-container matColumnDef="body_Temperature">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Temperature </th>
+          <td mat-cell *matCellDef="let row"> {{row.body_Temperature}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="respiration_Rate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Respiration Rate </th>
+          <td mat-cell *matCellDef="let row"> {{row.respiration_Rate}} </td>
+        </ng-container>
+  
+        
+      
+        
+    
+    
+        <tr mat-header-row *matHeaderRowDef="displayedDemoColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedDemoColumns;"></tr>
+    
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+    
+      <mat-paginator [pageSizeOptions]="[3, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>
+  
+  
+  
+  
+  <br>
+  <br>
+  
+  
+  
+  
+  
+  <h2 style="margin-top:-10px">Diagnosis Details</h2>
+    <div class="Tableheader" fxLayoutGap="70%">
+    <mat-form-field fxLayoutAlign="start end" appearance="standard">
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="applyFilters($event)" placeholder="Ex. Jhon" #input> 
+  
+    </mat-form-field>
+    <span class="lowerTableButton">
+    <button mat-raised-button color="primary" (click)="exporters.exportTable('csv',{fileName:'DiagnosisRecord'})">Export</button>
+  </span>
+  </div>
+  <br>
+    <div class="mat-elevation-z8">
+      
+      <table mat-table matTableExporter [dataSource]="dataSourceDiagnosis" #exporters="matTableExporter" matSort>
+    
+        
+        <ng-container matColumnDef="visitId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Visit Id </th>
+          <td mat-cell *matCellDef="let row"> {{row.visitId}} </td>
+        </ng-container>
+    
+       
+        <ng-container matColumnDef="patientId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Patient Id </th>
+          <td mat-cell *matCellDef="let row"> {{row.patientId}}</td>
+        </ng-container>
+        
+        
+        <ng-container matColumnDef="createdOn">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Visit Date</th>
+          <td mat-cell *matCellDef="let row"> {{row.createdOn | date:'shortDate'}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="diagnosis_Code">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Diagnosis Code</th>
+          <td mat-cell *matCellDef="let row"> {{row.diagnosis_Code}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="diagnosis_Description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+          <td mat-cell *matCellDef="let row"> {{row.diagnosis_Description}}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="drug_Name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Drug Name</th>
+          <td mat-cell *matCellDef="let row"> {{row.drug_Name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="drug_Form">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Drug Form</th>
+          <td mat-cell *matCellDef="let row"> {{row.drug_Form}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="drug_Strength">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Drug Strength</th>
+          <td mat-cell *matCellDef="let row"> {{row.drug_Strength}}</td>
+        </ng-container>
+        <ng-container matColumnDef="procedure_Code">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Procedure Code</th>
+          <td mat-cell *matCellDef="let row"> {{row.procedure_Code}}</td>
+        </ng-container>
+        <ng-container matColumnDef="procedure_Description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+          <td mat-cell *matCellDef="let row"> {{row.procedure_Description}}</td>
+        </ng-container>
+  
+        
+      
+        
+    
+    
+        <tr mat-header-row *matHeaderRowDef="displayDiagnosisColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayDiagnosisColumns;"></tr>
+    
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+    
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>

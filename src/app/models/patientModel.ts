@@ -60,7 +60,8 @@ export class allergyModel{
  allergyId!: string;
 allergy_Type!: string;
 allergy_Name!: string;
-allergy_Description!: string;
+allergy_Desc!: string;
+allergy_Clinical!:string;
 }
 
 

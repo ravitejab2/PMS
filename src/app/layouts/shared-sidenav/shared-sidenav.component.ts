@@ -4,6 +4,7 @@ import {  MediaChange } from '@angular/flex-layout';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { filter, map, Subscription } from 'rxjs';
+import { ResponseModel } from 'src/app/models/responseModel';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -17,17 +18,21 @@ export class SharedSidenavComponent implements OnInit {
    userRole!:string;
    personIs!:string;
   isActive:boolean=true;
+  userId!:number;
+  response!:any;
 // @Input() deviceXs!:boolean;
 mediaSub!: Subscription;
 devicesXs!: boolean;
 
 
 constructor(public mediaObserver: MediaObserver,public router:Router,private service:UserService,private toaster:ToastrService) {
-    const value = localStorage.getItem("userName");
-    if (typeof value === 'string') {
-      this.ActiveUsers = value; // ok
-    }
-    console.log(value);
+    
+    const id = localStorage.getItem("userID")
+    this.userId = Number(id); // ok
+   // console.log('userIDDD',this.userId)
+
+
+
     const user = localStorage.getItem("userRole");
     if (typeof user === 'string') {
       this.userRole = JSON.parse(user) // ok
@@ -59,17 +64,46 @@ ngOnInit() {
     filter((changes: MediaChange[]) => changes.length > 0),
     map((changes: MediaChange[]) => changes[0])
   ).subscribe((change: MediaChange) => {
-    console.log(change.mqAlias)
+   // console.log(change.mqAlias)
     this.devicesXs = change.mqAlias === "xs" ? true : false;
   }
   )
+
+if(this.userRole!='user'){
+  this.service.getUserinfo(this.userId).subscribe((data:ResponseModel)=>{
+    //console.log(data);
+    if(data.responseCode==1){
+      this.response=data.dataSet;
+      this.ActiveUsers=this.response.name;
+      //console.log(this.response);
+    }
+
+
+    
+  })
 }
+else{
+  this.service.getUserProfile(this.userId).subscribe((data:ResponseModel)=>{
+    console.log(data);
+    if(data.responseCode==1){
+      this.response=data.dataSet;
+      this.ActiveUsers=this.response.name;
+     // console.log(this.response);
+    }
+
+
+    
+  })
+}
+
+}
+
 
 ngOnDestroy() {
   this.mediaSub.unsubscribe();
 }
 logout(){
-  console.log('hit');
+  //console.log('hit');
  this.service.logout();
  this.router.navigate(['login']);
  this.toaster.success('Logout Successful')

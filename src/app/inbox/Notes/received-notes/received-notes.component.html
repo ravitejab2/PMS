@@ -41,8 +41,8 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
         <td mat-cell *matCellDef="let row" >
           <button *ngIf="!row.response" mat-raised-button color="primary" (click)="replyNote(row.noteId)">Reply</button>
-          &nbsp;&nbsp;
-          <button mat-raised-button color="warn" (click)="deleteNote(row.noteId)">Delete</button>
+          &nbsp;
+          <button mat-raised-button class="Delete"  (click)="deleteNote(row.noteId)">Delete</button>
           </td>
       </ng-container>
   

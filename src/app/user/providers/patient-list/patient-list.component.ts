@@ -71,6 +71,11 @@ export class PatientListComponent implements OnInit {
     
   }
 
+  viewVitals(patientId:number){
+    this.router.navigate(['/dashboard/patients/visit-history/'+patientId]);
+
+  }
+
 
   activate(id:number){
     this.service.activateUser(id).subscribe((data: ResponseModel) => {

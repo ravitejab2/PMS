@@ -101,4 +101,8 @@ export class EmployeeProfileComponent implements OnInit {
 
   }
 
+  editprofile(event:number){
+    this.router.navigate(['/dashboard/edit-employee/'+event]);
+  }
+
 }

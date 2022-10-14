@@ -109,6 +109,14 @@ export class UserService {
 
   }
 
+  sendLocation(latitude:number,longitude:number){
+    const body={
+      Latitude:latitude,
+      Longitude:longitude
+    }
+    return this.http.post<ResponseModel>(this.BaseURI +'/sendLocation/',body);
+  }
+
 
 
   getAllPatients():Observable<any>{
@@ -158,6 +166,22 @@ export class UserService {
       'Authorization': 'Bearer '+token
     })
     return this.http.get<ResponseModel>(this.BaseURI +'/users/'+id,{headers:headers});
+  }
+
+  editEmployee(id:number,body:any):Observable<any>{
+    let token=localStorage.getItem("userToken");
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer '+token
+    })
+    return this.http.put<ResponseModel>(this.BaseURI + '/editEmployee/'+id, body,{headers:headers});
+  }
+  
+  getEmployeedetails(id:number):Observable<any>{
+    let token=localStorage.getItem("userToken");
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer '+token
+    })
+    return this.http.get<ResponseModel>(this.BaseURI +'/user/'+id,{headers:headers});
   }
 
 

@@ -1,14 +1,15 @@
+<h2 style="text-align:center;margin-top: 5px;">Vital Records</h2>
 <div class="Tableheader" fxLayoutGap="70%">
   <mat-form-field fxLayoutAlign="start end" appearance="standard">
     <mat-label>Search</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Jhon" #input> 
-
   </mat-form-field>
 
   <button mat-raised-button color="primary" (click)="exporter.exportTable('csv',{fileName:'VitalRecord'})">Export</button>
 </div>
 <br>
   <div class="mat-elevation-z8">
+    
     <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter" matSort>
   
       
@@ -66,7 +67,7 @@
       </tr>
     </table>
   
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[3, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
   </div>
 
 
@@ -79,11 +80,11 @@
 
 
 
-
+<h2 style="text-align:center;margin-top: 5px;">Diagnosis Records</h2>
   <div class="Tableheader" fxLayoutGap="70%">
   <mat-form-field fxLayoutAlign="start end" appearance="standard">
     <mat-label>Search</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Jhon" #input> 
+    <input matInput (keyup)="applyFilters($event)" placeholder="Ex. Jhon" #input> 
 
   </mat-form-field>
 
@@ -158,5 +159,5 @@
       </tr>
     </table>
   
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[3, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
   </div>

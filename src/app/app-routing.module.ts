@@ -32,6 +32,8 @@ import { AddAppointmentComponent } from './inbox/scheduler/add-appointment/add-a
 import { EditAppointmentComponent } from './inbox/scheduler/edit-appointment/edit-appointment.component';
 import { AppointmentsComponent } from './inbox/scheduler/appointments/appointments.component';
 import { AboutUsComponent } from './layouts/about-us/about-us.component';
+import { PatientVisitsComponent } from './user/providers/Employee-Profile/patient-visits.component';
+import { EditEmployeeComponent } from './user/providers/edit-employee/edit-employee.component';
 
 
 
@@ -128,6 +130,10 @@ const routes: Routes = [
   path: 'patient/visit-history',
   component:PatientVisitHistoryComponent
 },
+{
+  path: 'patients/visit-history/:id',
+  component:PatientVisitsComponent
+},
 
 {
 
@@ -155,6 +161,11 @@ const routes: Routes = [
   path: 'appointments',
   component: AppointmentsComponent
 
+},
+
+{
+  path: 'edit-employee/:id',
+  component: EditEmployeeComponent
 },
 
 ]}

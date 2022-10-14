@@ -1,4 +1,4 @@
-
+<h2 style="text-align:center;margin-top: 5px;">Patient Details</h2>
   <mat-form-field appearance="standard">
     <mat-label>Search</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Jhon" #input>
@@ -41,18 +41,30 @@
       </ng-container>
       
       <ng-container matColumnDef="edit status">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>DEMOGRAPHIC</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>PROFILE</th>
         <td mat-cell *matCellDef="let row" >
-          <button mat-raised-button color="primary" (click)="addDemographic(row.id)">Add</button>
+          <button mat-icon-button  (click)="addDemographic(row.id)">
+            <mat-icon style="color:rgb(28, 28, 147)">health_and_safety</mat-icon>
+          </button>
+          <!-- <button mat-raised-button color="primary" (click)="addDemographic(row.id)">Add</button> -->
           </td>
       
         </ng-container>
       <ng-container matColumnDef="vitals">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>VISIT</th>
         <td mat-cell *matCellDef="let row" >
-          <button mat-raised-button color="primary" (click)="addVitals(row.id)">Add</button>
+          <!-- <button mat-raised-button color="primary" (click)="addVitals(row.id)">Add</button>&nbsp; -->
+          <button mat-icon-button  (click)="addVitals(row.id)">
+            <mat-icon style="color:rgb(28, 28, 147)">health_and_safety</mat-icon>
+          </button>
+          <button mat-icon-button (click)="viewVitals(row.id)">
+            <mat-icon style="color:rgb(125, 6, 6)">info</mat-icon>
+          </button>
           </td>
       </ng-container>
+    
+     
+  
   
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

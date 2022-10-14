@@ -1,6 +1,7 @@
 table {
   width: 100%;
-  padding-left:2%
+  padding-left:2%;
+
 }
 
 td.mat-raised-button{
@@ -16,4 +17,5 @@ td.mat-raised-button{
 h2{
    margin-left: 40%;
    justify-content: center;
+   color:rgb(51, 122, 145)
   }

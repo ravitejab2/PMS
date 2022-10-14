@@ -6,4 +6,9 @@ table {
   h2{
    margin-left: 40%;
    justify-content: center;
+   color:rgb(51, 122, 145)
+  }
+  .Delete{
+    background-color:rgb(125, 6, 6);
+    color:white
   }

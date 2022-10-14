@@ -6,8 +6,15 @@ table {
    .header{
     text-align: center;
     margin-top:1%;
-    color:rgb(51, 122, 145)
+    color:rgb(51, 122, 145);
+    justify-content: center;
+
    }
    .mat-raised-button{
      margin-top: 6px;
+   }
+   .Block{
+    background-color:rgb(125, 6, 6);
+    color:white
+    
    }

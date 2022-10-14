@@ -14,8 +14,12 @@ td.mat-raised-button{
 }
 .Tableheader{
     display: flex;
+    margin-top:-35px
 }
 .mat-raised-button{
     height:4%;
     margin-top:3%
+}
+h2{
+    color:rgb(51, 122, 145);
 }

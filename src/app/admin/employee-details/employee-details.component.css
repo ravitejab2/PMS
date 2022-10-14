@@ -1,5 +1,6 @@
 table {
     width: 100%;
+  
   }
 
 td.mat-raised-button{
@@ -12,12 +13,22 @@ td.mat-raised-button{
 .mat-elevation-z8{
     box-shadow:lightblue
 }
-.TableHeader{
-    
-}
+
 .mat-raised-button{
     margin-left:2%;
 }
 .button{
     margin-left:50%
 }
+h2{
+    color:rgb(51, 122, 145);
+}
+.Block{
+    background-color:rgb(125, 6, 6);
+    color:white
+    
+   }
+
+   .TableHeader{
+       margin-top: -15px;
+   }

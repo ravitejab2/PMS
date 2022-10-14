@@ -1,0 +1,21 @@
+table {
+    width: 100%;
+    margin-top: -20px;
+  }
+
+  .button{
+    margin-left:80%;
+    margin-top:-100px
+}
+.lowerTableButton{
+    margin-left:85%;
+    margin-bottom: 100px;
+}
+h2{
+  margin-top: 15px;
+  color:rgb(51, 122, 145);
+  text-align: center;
+}
+.Tableheader{
+  margin-top:-3px
+}

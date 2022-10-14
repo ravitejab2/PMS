@@ -59,6 +59,8 @@ import { AppointmentService } from 'src/app/services/schedule/appointment.servic
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { AppointmentsComponent } from 'src/app/inbox/scheduler/appointments/appointments.component';
 import { AboutUsComponent } from '../about-us/about-us.component';
+import { PatientVisitsComponent } from 'src/app/user/providers/Employee-Profile/patient-visits.component';
+import { EditEmployeeComponent } from 'src/app/user/providers/edit-employee/edit-employee.component';
 
 
 
@@ -93,6 +95,8 @@ import { AboutUsComponent } from '../about-us/about-us.component';
     CalenderComponent,
     EditAppointmentComponent,
     ViewCalenderComponent,
+    PatientVisitsComponent,
+    EditEmployeeComponent
     
   
    

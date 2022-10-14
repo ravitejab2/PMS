@@ -44,6 +44,7 @@ import { MatTableExporterModule } from 'mat-table-exporter';
 import { AboutUsComponent } from './layouts/about-us/about-us.component';
 
 
+
 ;
 
 
@@ -59,7 +60,8 @@ import { AboutUsComponent } from './layouts/about-us/about-us.component';
     ForgotPasswordComponent,
     ChangePasswordComponent,
     SharedLandingToolbarComponent,
-    AboutUsComponent
+    AboutUsComponent,
+ 
    
     
   

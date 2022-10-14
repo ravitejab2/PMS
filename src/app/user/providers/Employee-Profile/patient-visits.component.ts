@@ -2,20 +2,18 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Diagnosis_Medication, Vitals } from 'src/app/models/patientModel';
-import { ResponseModel } from 'src/app/models/responseModel';
 import { EmployeesService } from 'src/app/services/employees/employees.service';
 import { PatientService } from 'src/app/services/patient/patient.service';
-import { DemographicsModel } from '../../providers/patient-demo-data/patient-demo-data.component';
 
 @Component({
-  selector: 'app-patient-visit-history',
-  templateUrl: './patient-visit-history.component.html',
-  styleUrls: ['./patient-visit-history.component.css']
+  selector: 'app-patient-visits',
+  templateUrl: './patient-visits.component.html',
+  styleUrls: ['./patient-visits.component.css']
 })
-export class PatientVisitHistoryComponent implements OnInit {
+export class PatientVisitsComponent implements OnInit {
 
   
   displayedDemoColumns: string[] = ['visitId','patient_Id', 'visit_Date','height','weight','blood_Pressure','body_Temperature','respiration_Rate'];
@@ -34,17 +32,21 @@ export class PatientVisitHistoryComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatSort) sort2!: MatSort;
   userId!: any;
+  patientId: number;
 
   
   
-  constructor(private router:Router,private services:PatientService,private toasts:ToastrService,private service:EmployeesService) {
-    const value = localStorage.getItem("userID");
-    this.userId = value;
+  constructor(private router:Router,private services:PatientService,private route:ActivatedRoute,private toasts:ToastrService,private service:EmployeesService) {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      let id = Number(params.get('id'));
 
-    console.log('Profile', value)
-    console.log(this.userId)
+      this.patientId = id;
+      console.log('ParameterId', this.patientId);
 
-   }
+    });
+  }
+
+
   ngOnInit(): void {
    
     this.fetchAllPatientDemo();    
@@ -56,7 +58,7 @@ export class PatientVisitHistoryComponent implements OnInit {
   }
 
   fetchAllPatientDemo(){
-    this.service.getIndividualVitals(this.userId).subscribe((data)=>{
+    this.service.getIndividualVitals(this.patientId).subscribe((data)=>{
       console.log(data)
       this.vitals=data.dataSet;
       console.log(this.vitals)
@@ -77,7 +79,7 @@ export class PatientVisitHistoryComponent implements OnInit {
 
 
   fetchAllDiagnosisMedication(){
-    this.services.getDemographicDiagnosis(this.userId).subscribe(data=>{
+    this.services.getDemographicDiagnosis(this.patientId).subscribe(data=>{
       this. diagnosis_M=data.dataSet;
       console.log(this.diagnosis_M);
        
@@ -102,7 +104,7 @@ export class PatientVisitHistoryComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
- 
+  
   applyFilters(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSourceDiagnosis.filter = filterValue.trim().toLowerCase();

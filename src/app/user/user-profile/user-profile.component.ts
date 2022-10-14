@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, of, tap } from 'rxjs';
-import { User } from 'src/app/models/patientModel';
+import { allergyModel, User } from 'src/app/models/patientModel';
 import { ResponseModel } from 'src/app/models/responseModel';
 import { PatientService } from 'src/app/services/patient/patient.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -19,6 +20,7 @@ export class UserProfileComponent implements OnInit {
  
   user!:User;
   emergencyContact!:EmergencyDetails;
+  allergy!:allergyModel;
 
   userId!:any;
   "userProfile":FormGroup
@@ -26,9 +28,10 @@ export class UserProfileComponent implements OnInit {
   panelOpenState = false;
   response!:any;
   emegencyData!:any;
+  allergyData!:any;
  
 
-  constructor(private router:Router,private service:UserService,private formBuilder:FormBuilder,private patientService:PatientService) { 
+  constructor(private router:Router,private toaster:ToastrService,private service:UserService,private formBuilder:FormBuilder,private patientService:PatientService) { 
     
     const value=localStorage.getItem("userID");  
       this.userId =value;
@@ -44,6 +47,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.loadUserProfile();
     this.loadEmegencyContacts()
+    this.loadAllergyData();
     // this.loadUser();
     // this. loadApiValue();
    
@@ -105,8 +109,27 @@ export class UserProfileComponent implements OnInit {
 
       }
       });
+
   }
+
+loadAllergyData(){
+  this.patientService.getAllergyById(this.userId).subscribe((data:ResponseModel)=>{
+    console.log('Allergy',data);
+    if (data.responseCode == 1) {
+      this.allergyData=data;
+      this.allergy=this.allergyData.dataSet;
+      console.log(this.allergy);
+     }
+     
+     else{
+      this.toaster.error(data.responseMessage)
+
+     }
+     });
+  
+}
+}
 
   
 
-}
+

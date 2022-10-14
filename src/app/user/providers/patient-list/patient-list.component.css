@@ -7,5 +7,9 @@ td.mat-raised-button{
   
 }
 .mat-form-field{
-    margin-left:10px
+    margin-left:10px;
+    margin-top:-50px
+}
+h2{
+    color:rgb(51, 122, 145);
 }

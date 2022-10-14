@@ -18,6 +18,9 @@ export class LoginComponent implements OnInit {
   isLoginError: boolean = false;
   deviceXs!: boolean;
   response!: any;
+  Latitude!: number;
+
+  Longitude!: number;
   
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -97,6 +100,27 @@ export class LoginComponent implements OnInit {
         this.validateAllFromFields(control)
       }
     })
+  }
+
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        if (position) {
+          console.log("Latitude: " + position.coords.latitude +
+            "Longitude: " + position.coords.longitude);
+          this.Latitude = position.coords.latitude;
+           this.Longitude = position.coords.longitude;
+          this.service.sendLocation(this.Latitude,this.Longitude).subscribe((data:ResponseModel)=>{
+            if(data.responseCode==1){
+              this.toaster.success(data.responseMessage);
+            }
+          });
+        }
+      },
+        (error) => this.toaster.error("Geolocation is not supported by this browser"));
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
   }
 
 }

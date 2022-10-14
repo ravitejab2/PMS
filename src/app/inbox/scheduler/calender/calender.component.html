@@ -15,6 +15,6 @@
 
 <div>
     <daypilot-calendar #calendar [config]="calendarConfig" [events]="events" ></daypilot-calendar>
-    <daypilot-month [config]="configMonth" [events]="events" #month></daypilot-month>
+    <daypilot-month *ngIf="enableMonth" [config]="configMonth" [events]="events" #month></daypilot-month>
 </div>
 

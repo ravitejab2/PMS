@@ -1,0 +1,113 @@
+<mat-card [formGroup]= "registeremp" class="card" fxLayout="column" fxLayoutAlign="center center">
+
+    <mat-card-header>
+      
+      <div class="heading">
+      
+        <img src="../../../assets/CTLogo/CardLogo.png" style="height:40px">
+        
+        <span class="cardTitle" style="font-size:18px" ><b>Employee Registration</b></span>
+      </div>
+    
+    </mat-card-header>
+    
+    <div class="radio" style="margin-top:10px" ><b>Title:</b>
+       
+        <div>
+          <input type="radio" id="Mr" formControlName="Title" name="Title" value="Mr">
+          <label for="Mr">Mr</label>
+        </div>
+    
+        <div>
+          <input type="radio" id="Mrs" formControlName="Title" name="Title" value="Mrs">
+          <label for="Mrs">Mrs</label>
+        </div>
+        <div>
+          <input type="radio" id="Ms" formControlName="Title" name="Title" value="Ms">
+          <label for="Ms">Ms</label>
+        </div>
+        <div>
+          <input type="radio" id="Dr" formControlName="Title" name="Title" value="Dr">
+          <label for="Dr">Dr</label>
+        </div>
+        <mat-error style="margin-top:0px"  *ngIf= "registeremp.controls['Title'].dirty && registeremp.hasError('required','Title')">Title Required
+      </mat-error>
+        <!-- <small *ngIf= "registerpatient.controls['Title'].dirty && registerpatient.hasError('required','Title')">Kindly select the Title</small> -->
+      </div>
+    <br>
+  <div fxLayout="row" fxLayoutGap="50px" fxLayout.xs="column">
+    <p class="name">
+        <mat-form-field appearance="outline">
+            <mat-label><b>FirstName</b></mat-label>
+            <input matInput type="text" formControlName="FirstName" matInput placeholder="Jhon" required>                 
+        </mat-form-field>
+        <mat-error *ngIf= "registeremp.controls['FirstName'].dirty && registeremp.hasError('required','FirstName')">First name cannot be empty
+        </mat-error>
+        <mat-error *ngIf= "registeremp.controls['FirstName'].dirty && registeremp.hasError('minlength','FirstName')">Please don’t use abbreviations
+        </mat-error>
+        
+    </p>
+
+
+    <p class="name">
+        <mat-form-field  appearance="outline">
+            <mat-label><b>LastName</b></mat-label>
+            <input matInput type="text" formControlName="LastName" matInput placeholder="Rodriguez" required>               
+        </mat-form-field>
+        <mat-error *ngIf="registeremp.controls['LastName'].dirty && registeremp.hasError('required','LastName')">Last name
+          cannot be empty
+        </mat-error>
+        <mat-error *ngIf="registeremp.controls['LastName'].dirty && registeremp.hasError('minlength','LastName')">Please
+          don’t use abbreviations
+        </mat-error>
+    </p>
+  </div>
+
+  <div style="margin-left: 33px;" fxLayout="row" fxLayoutGap="50px" fxLayout.xs="column">
+    <p class="name">
+      <mat-form-field  appearance="outline">
+          <mat-label><b>ContactNo.</b></mat-label>
+          <input matInput type="number" formControlName="ContactNumber" matInput placeholder="+91 0000000000" required>               
+      </mat-form-field>
+      <mat-error *ngIf= "registeremp.controls['ContactNumber'].dirty && registeremp.hasError('required','ContactNumber')">Please enter Contact number
+      </mat-error>
+  </p>
+  <p class="Dob">
+    <mat-form-field style="width:85%" appearance="outline">
+    <mat-label><b>DOB</b></mat-label>
+      <input matInput formControlName="DateOfBirth" [max]="maxDate" [matDatepicker]="picker" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    <mat-error *ngIf= "registeremp.controls['DateOfBirth'].dirty && registeremp.hasError('required','DateOfBirth')">Please enter a valid date of birth
+    </mat-error>
+</p>
+</div>
+
+<div fxLayout="row" fxLayoutGap="50px" fxLayout.xs="column">
+  <p class="email">
+    <mat-form-field appearance="outline">
+        <mat-label><b>Email</b></mat-label>
+        <input readonly matInput type="email" formControlName="Email" matInput placeholder="abc@xyz.com" required>               
+    </mat-form-field>
+    <mat-error *ngIf= "registeremp.controls['Email'].dirty && registeremp.hasError('email','Email')">Please enter valid Email address
+    </mat-error>
+    <mat-error *ngIf= "registeremp.controls['Email'].dirty && registeremp.hasError('required','Email')">Please enter your Email address
+    </mat-error>
+</p>
+
+
+
+    
+    </div>
+
+    <div fxLayout.xs="column" fxLayoutGap="50px">
+        
+      <button mat-raised-button color="primary" (click)="empregister()">Update</button>
+      <button mat-raised-button color="primary" routerLink="/dashboard/employee/profile">Cancel</button>
+  
+</div>
+
+
+
+</mat-card>
